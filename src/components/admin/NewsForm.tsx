@@ -1,0 +1,211 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { createNews, updateNews, uploadImage } from '@/lib/supabase';
+import RichTextEditor from './RichTextEditor';
+import { ImageIcon, X } from 'lucide-react';
+import Image from 'next/image';
+
+interface NewsData {
+  id?: number;
+  title: string;
+  content: string;
+  image_url?: string;
+  is_important?: boolean;
+}
+
+interface NewsFormProps {
+  news?: NewsData;
+}
+
+// Função para criar um slug a partir do título
+const slugify = (text: string) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Substitui espaços por hífens
+    .replace(/[^\w\-]+/g, '') // Remove caracteres não alfanuméricos
+    .replace(/\-\-+/g, '-') // Substitui múltiplos hífens por um único
+    .replace(/^-+/, '') // Remove hífens do início
+    .replace(/-+$/, ''); // Remove hífens do fim
+};
+
+const NewsForm = ({ news }: NewsFormProps) => {
+  const [title, setTitle] = useState(news?.title || '');
+  const [content, setContent] = useState(news?.content || '');
+  const [mainImage, setMainImage] = useState<string | null>(news?.image_url || null);
+  const [isImportant, setIsImportant] = useState(news?.is_important || false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUploadingMainImage, setIsUploadingMainImage] = useState(false);
+  const router = useRouter();
+
+  const handleMainImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingMainImage(true);
+    try {
+      const imageUrl = await uploadImage(file);
+      setMainImage(imageUrl);
+    } catch (error) {
+      console.error('Erro ao fazer upload da imagem principal:', error);
+      alert('Erro ao fazer upload da imagem');
+    } finally {
+      setIsUploadingMainImage(false);
+    }
+  };
+
+  const handleContentImageUpload = async (file: File): Promise<string> => {
+    return await uploadImage(file);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      if (news?.id) {
+        // Atualizar notícia existente
+        await updateNews(news.id, {
+          title,
+          content,
+          image_url: mainImage || undefined,
+          is_important: isImportant
+        });
+        alert('Notícia atualizada com sucesso!');
+      } else {
+        // Criar nova notícia
+        const slug = slugify(title);
+        await createNews({
+          title,
+          content,
+          slug,
+          image_url: mainImage || undefined,
+          is_important: isImportant
+        });
+        alert('Notícia criada com sucesso!');
+      }
+      router.push('/admin/news');
+      router.refresh(); // Força a atualização dos dados na página de listagem
+    } catch (error) {
+      console.error("Erro ao salvar notícia:", error);
+      alert("Ocorreu um erro ao salvar a notícia.");
+    }
+    setIsSubmitting(false);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Campo de Título */}
+      <div>
+        <label className="block mb-2 text-sm font-medium text-gray-200">Título da Notícia</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full px-4 py-3 border rounded-lg bg-gray-800 text-white border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+          placeholder="Digite o título da notícia..."
+          required
+        />
+      </div>
+
+      {/* Campo de Destaque */}
+      <div className="flex items-center gap-3 p-4 bg-gray-800 rounded-lg border border-gray-600">
+        <input
+          type="checkbox"
+          id="is_important"
+          checked={isImportant}
+          onChange={(e) => setIsImportant(e.target.checked)}
+          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 rounded focus:ring-primary focus:ring-2"
+        />
+        <label htmlFor="is_important" className="text-sm font-medium text-gray-200 cursor-pointer">
+          Marcar como notícia de destaque (aparecerá na seção "Destaques" da página inicial)
+        </label>
+      </div>
+
+      {/* Campo de Imagem Principal */}
+      <div>
+        <label className="block mb-2 text-sm font-medium text-gray-200">
+          Imagem Principal da Notícia
+        </label>
+        <div className="space-y-4">
+          {mainImage ? (
+            <div className="relative w-full max-w-md">
+              <Image
+                src={mainImage}
+                alt="Imagem principal"
+                width={400}
+                height={300}
+                className="rounded-lg object-cover border-2 border-gray-600"
+              />
+              <button
+                type="button"
+                onClick={() => setMainImage(null)}
+                className="absolute top-2 right-2 p-2 bg-red-600 hover:bg-red-700 rounded-full transition-colors"
+                title="Remover imagem"
+              >
+                <X size={20} />
+              </button>
+            </div>
+          ) : (
+            <label className="flex flex-col items-center justify-center w-full max-w-md h-64 border-2 border-dashed border-gray-600 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <ImageIcon className="w-12 h-12 mb-3 text-gray-400" />
+                <p className="mb-2 text-sm text-gray-400">
+                  <span className="font-semibold">Clique para fazer upload</span>
+                </p>
+                <p className="text-xs text-gray-500">PNG, JPG ou WEBP (MAX. 5MB)</p>
+              </div>
+              <input
+                type="file"
+                className="hidden"
+                accept="image/*"
+                onChange={handleMainImageUpload}
+                disabled={isUploadingMainImage}
+              />
+            </label>
+          )}
+          {isUploadingMainImage && (
+            <p className="text-sm text-gray-400">Fazendo upload da imagem...</p>
+          )}
+        </div>
+      </div>
+
+      {/* Editor de Conteúdo Rico */}
+      <div>
+        <label className="block mb-2 text-sm font-medium text-gray-200">
+          Conteúdo da Notícia
+        </label>
+        <p className="text-xs text-gray-400 mb-3">
+          Use a barra de ferramentas para formatar o texto, adicionar imagens e links.
+        </p>
+        <RichTextEditor
+          content={content}
+          onChange={setContent}
+          onImageUpload={handleContentImageUpload}
+        />
+      </div>
+
+      {/* Botão de Submit */}
+      <div className="flex gap-4">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="px-6 py-3 text-white bg-primary rounded-lg hover:bg-opacity-90 disabled:bg-gray-500 disabled:cursor-not-allowed transition-all font-medium"
+        >
+          {isSubmitting ? 'Salvando...' : news?.id ? 'Atualizar Notícia' : 'Publicar Notícia'}
+        </button>
+        <button
+          type="button"
+          onClick={() => router.push('/admin/news')}
+          className="px-6 py-3 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition-all font-medium"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default NewsForm;

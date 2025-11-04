@@ -116,16 +116,12 @@ Na tela de configuração:
 - Vercel vai detectar automaticamente: **Next.js** ✅
 - Deixe como está
 
-#### **Root Directory:**
-- Clique em **"Edit"**
-- Selecione a pasta: **`site`** (importante!)
-- Confirme
-
 #### **Build and Output Settings:**
-- Deixe os padrões:
+- Deixe os padrões (auto-detectados):
   - Build Command: `npm run build`
   - Output Directory: `.next`
   - Install Command: `npm install`
+- **Não precisa alterar nada!**
 
 ### **Passo 2.4: Adicionar variáveis de ambiente** 🔑
 
@@ -247,7 +243,10 @@ Se no futuro adicionar mais variáveis:
 ## 🐛 Solução de Problemas Comuns
 
 ### **Erro: "Cannot find module" durante build**
-**Solução**: Verifique se está usando a pasta `site` como Root Directory
+**Solução**:
+- Execute `npm install` localmente primeiro
+- Verifique se o `package.json` está na raiz do projeto
+- Limpe o cache: Vercel → Deployments → Redeploy
 
 ### **Erro: "Supabase client error"**
 **Solução**: Confira se as variáveis de ambiente estão corretas:

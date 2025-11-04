@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(shopt:*)",
+      "Bash(for file in site/*)",
+      "Bash(do [ \"$file\" != \"site/.git\" ])",
+      "Bash(done)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

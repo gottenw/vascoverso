@@ -1,301 +1,263 @@
-# ⚽ VascoVerso - Site de Notícias do Vasco da Gama
+# 🏴 VascoVerso
 
-![Vasco da Gama](https://img.shields.io/badge/Vasco-da%20Gama-red?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MCIgZmlsbD0icmVkIi8+PC9zdmc+)
-![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![Supabase](https://img.shields.io/badge/Supabase-Database-green?style=for-the-badge&logo=supabase)
+Site de notícias do Vasco da Gama com sistema de gerenciamento completo.
 
-Site oficial de notícias do **VascoVerso** - seu portal de informações sobre o Gigante da Colina! 🔴⚪⚫
+## 🚀 Status do Projeto
 
----
-
-## 🚀 Início Rápido
-
-### 📖 Para o Cliente (Não Técnico)
-
-**Quer colocar o site no ar?**
-
-👉 **Leia:** [`GUIA-CLIENTE-HOSPEDAR.md`](./GUIA-CLIENTE-HOSPEDAR.md)
-
-Este guia explica tudo em linguagem simples, passo a passo!
-
----
-
-### 💻 Para Desenvolvedores
-
-#### Instalação Local
-
-```bash
-# 1. Clone o repositório
-git clone https://github.com/usuario/vascoverso.git
-cd vascoverso/site
-
-# 2. Instale as dependências
-npm install
-
-# 3. Instale o editor Tiptap
-bash install-tiptap.sh
-
-# 4. Configure as variáveis de ambiente
-cp .env.example .env.local
-# Edite .env.local com suas credenciais do Supabase
-
-# 5. Execute o servidor de desenvolvimento
-npm run dev
-```
-
-Abra [http://localhost:3000](http://localhost:3000) no navegador.
-
----
-
-## 📚 Documentação Completa
-
-### 🎯 Para o Cliente
-
-| Documento | Descrição |
-|-----------|-----------|
-| [**DEPLOY.md**](./DEPLOY.md) | 🚀 Como hospedar o site (GitHub + Vercel) |
-| [**Adsense.md**](./Adsense.md) | 💰 Como ativar Google AdSense no site |
-| [**INSTRUCOES-EDITOR.md**](./site/INSTRUCOES-EDITOR.md) | Como criar e editar notícias |
-
-### 🔧 Para Desenvolvedores
-
-| Documento | Descrição |
-|-----------|-----------|
-| [**GUIA-DEPLOY-COMPLETO.md**](./GUIA-DEPLOY-COMPLETO.md) | Guia técnico completo de deploy |
-| [**CHECKLIST-DEPLOY.md**](./CHECKLIST-DEPLOY.md) | Checklist antes de entregar |
-| [**CONFIGURACAO-SUPABASE.md**](./site/CONFIGURACAO-SUPABASE.md) | Configurar banco de dados |
-| [**NOVO-EDITOR-README.md**](./site/NOVO-EDITOR-README.md) | Documentação do editor Tiptap |
+**Versão Beta** - Pronto para deploy e testes
 
 ---
 
 ## ✨ Funcionalidades
 
-### 🎨 Interface
+### 👥 Área Pública
+- ✅ Listagem de notícias em destaque
+- ✅ Página individual de notícias com conteúdo completo
+- ✅ Sistema de busca inteligente
+- ✅ Tabela do campeonato (exibe 5 times ao redor do Vasco)
+- ✅ Próximos jogos do Vasco
+- ✅ Notícias recentes na sidebar
+- ✅ Compartilhamento de notícias
+- ✅ Modo claro/escuro
+- ✅ Design responsivo (mobile, tablet, desktop)
+- ✅ Links para redes sociais
+- ✅ Preparado para Google AdSense (placeholders ocultos)
 
-- ✅ Design moderno e responsivo
-- ✅ Dark mode / Light mode
-- ✅ Cruz de Malta do Vasco
-- ✅ Ícones sociais (YouTube, Instagram, Facebook, etc.)
-- ✅ Preparado para Google AdSense (placeholders ocultos até ativação)
-
-### 📝 Editor de Notícias
-
-- ✅ Editor visual (WYSIWYG) super intuitivo
-- ✅ Negrito, itálico, sublinhado, tachado
-- ✅ Títulos (H1, H2, H3)
-- ✅ Listas (marcadores e numeradas)
-- ✅ Alinhamento de texto
-- ✅ Upload de imagens (principal + no conteúdo)
-- ✅ Inserção de links
-- ✅ Desfazer/Refazer
-
-### 🔐 Painel Administrativo
-
-- ✅ Login seguro
-- ✅ Criar, editar e deletar notícias
-- ✅ Gerenciar tabelas e partidas
-- ✅ Upload de imagens no Supabase Storage
+### 🔐 Painel Administrativo (`/admin`)
+- ✅ Login seguro com autenticação
+- ✅ Dashboard com visão geral
+- ✅ **Gerenciar Notícias**:
+  - Criar notícias com editor de texto rico (TipTap)
+  - Editar notícias existentes
+  - Upload de imagens
+  - Marcar como destaque
+  - Sistema de slug automático
+- ✅ **Gerenciar Tabela do Campeonato**:
+  - Editar posição, pontos, jogos, vitórias, empates, derrotas
+  - Editar gols a favor e contra
+  - **Editar nome das equipes**
+  - Sistema inteligente de troca de posições
+  - Detecção automática do Vasco da Gama
+- ✅ **Gerenciar Redes Sociais**:
+  - Atualizar links das redes
+  - Atualizar contagem de seguidores
+- ✅ **Gerenciar Próximos Jogos**:
+  - Adicionar/editar jogos do Vasco
+  - Data, horário, adversário, local
 
 ---
 
 ## 🛠️ Tecnologias
 
 ### Frontend
-- **Next.js 15.5** - Framework React
-- **TypeScript** - Tipagem estática
-- **Tailwind CSS** - Estilização
-- **Tiptap** - Editor de texto rico
-- **Lucide React** - Ícones
+- **Next.js 15** (React Server Components)
+- **TypeScript**
+- **Tailwind CSS**
+- **Lucide Icons**
 
 ### Backend
-- **Supabase** - Banco de dados (PostgreSQL)
-- **Supabase Storage** - Armazenamento de imagens
-- **Supabase Auth** - Autenticação
+- **Supabase** (PostgreSQL + Auth + Storage)
+
+### Editor
+- **TipTap** (Editor WYSIWYG)
 
 ### Deploy
-- **Vercel** - Hospedagem (recomendado)
-- **GitHub** - Controle de versão
+- **Vercel** (hosting + CI/CD)
+- **GitHub** (controle de versão)
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
 vascoverso/
-├── site/
-│   ├── src/
-│   │   ├── app/              # Pages e rotas
-│   │   │   ├── admin/        # Painel administrativo
-│   │   │   ├── noticias/     # Páginas de notícias
-│   │   │   └── page.tsx      # Página inicial
-│   │   ├── components/       # Componentes React
-│   │   │   ├── admin/        # Componentes do admin
-│   │   │   │   ├── RichTextEditor.tsx  # Editor Tiptap
-│   │   │   │   └── NewsForm.tsx        # Formulário de notícias
-│   │   │   ├── icons/        # Ícones customizados
-│   │   │   ├── Header.tsx    # Cabeçalho
-│   │   │   ├── Footer.tsx    # Rodapé
-│   │   │   └── ...
-│   │   └── lib/
-│   │       └── supabase.ts   # Configuração Supabase
-│   ├── public/               # Arquivos estáticos
-│   │   └── cruzdemalta.png   # Logo do Vasco
-│   ├── .env.example          # Modelo de variáveis
-│   ├── package.json          # Dependências
+├── src/                    # Código fonte Next.js
+│   ├── app/               # Pages e layouts (App Router)
+│   │   ├── admin/         # Painel administrativo
+│   │   └── noticias/      # Páginas de notícias
+│   ├── components/        # Componentes React
+│   └── lib/               # Utilitários (Supabase client)
+├── public/                # Arquivos estáticos
+├── docs/                  # Documentação do projeto
+│   ├── DEPLOY.md          # 🚀 Guia de deploy GitHub + Vercel
+│   ├── Adsense.md         # 💰 Guia Google AdSense
+│   ├── INSTRUCOES-EDITOR.md        # Como usar o editor
+│   ├── CONFIGURACAO-SUPABASE.md    # Setup do banco
 │   └── ...
-├── GUIA-CLIENTE-HOSPEDAR.md  # Guia para o cliente
-├── GUIA-DEPLOY-COMPLETO.md   # Guia técnico de deploy
-├── CHECKLIST-DEPLOY.md       # Checklist de entrega
-└── README.md                 # Este arquivo
+├── package.json
+├── next.config.mjs
+└── README.md              # Este arquivo
 ```
 
 ---
 
-## 🔑 Variáveis de Ambiente
+## 🚀 Como Fazer Deploy
 
-Crie um arquivo `.env.local` na pasta `site/`:
+**📖 Leia o guia completo**: [`docs/DEPLOY.md`](./docs/DEPLOY.md)
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anon-key-aqui
-```
+### Resumo Rápido:
 
-**Onde encontrar:**
-1. Acesse [app.supabase.com](https://app.supabase.com)
-2. Selecione seu projeto
-3. Vá em **Settings** > **API**
-4. Copie **Project URL** e **anon public key**
+1. **Subir para GitHub:**
+   ```bash
+   git init
+   git add .
+   git commit -m "Primeiro commit: VascoVerso"
+   git remote add origin https://github.com/SEU-USERNAME/vascoverso.git
+   git push -u origin main
+   ```
 
----
+2. **Deploy na Vercel:**
+   - Acesse [vercel.com/login](https://vercel.com/login)
+   - Importe o projeto do GitHub
+   - Configure variáveis de ambiente (Supabase)
+   - Deploy automático!
 
-## 🚀 Deploy
-
-### Vercel (Recomendado)
-
-1. Faça fork ou clone este repositório
-2. Importe no [Vercel](https://vercel.com)
-3. Configure as variáveis de ambiente
-4. Deploy! 🎉
-
-**Guia detalhado:** [`DEPLOY.md`](./DEPLOY.md)
+**Tempo estimado**: ~15 minutos
 
 ---
 
 ## 💰 Google AdSense
 
-O site está **pronto para AdSense**, mas os placeholders estão **temporariamente ocultos**.
+O site está **preparado para AdSense** com placeholders temporariamente ocultos.
 
-**Locais preparados:**
+**📖 Leia o guia completo**: [`docs/Adsense.md`](./docs/Adsense.md)
+
+### Locais preparados:
 - 4 cantos fixos do site
 - Meio do conteúdo das notícias
 
-**Como ativar:**
-1. Crie conta no Google AdSense
-2. Obtenha aprovação
-3. Copie os códigos fornecidos pelo Google
-4. Envie para o desenvolvedor integrar
-
-**Guia completo:** [`Adsense.md`](./Adsense.md)
+### Como ativar:
+1. Criar conta no Google AdSense
+2. Obter aprovação
+3. Copiar códigos fornecidos
+4. Enviar para integração
 
 ---
 
-## 👤 Primeiro Acesso Admin
+## 🔐 Variáveis de Ambiente
 
-1. Crie um usuário no Supabase:
-   - Authentication > Users > Add User
-   - Marque "Auto Confirm User"
+Necessário configurar no Vercel (ou `.env.local` local):
 
-2. Acesse: `https://seu-site.com/admin/login`
+```env
+NEXT_PUBLIC_SUPABASE_URL=sua_url_do_supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua_chave_anon
+```
 
-3. Faça login com as credenciais criadas
-
----
-
-## 📸 Screenshots
-
-### Página Inicial
-- Lista de notícias à esquerda (foco principal)
-- Destaques e widgets à direita
-- Cruz de Malta + Logo VascoVerso
-
-### Editor de Notícias
-- Interface intuitiva
-- Barra de ferramentas visual
-- Upload de imagens drag & drop
-- Preview em tempo real
-
-### Painel Admin
-- Dashboard com estatísticas
-- Gerenciar notícias, partidas, tabela
-- Interface limpa e moderna
+**Onde encontrar**: Supabase → Settings → API
 
 ---
 
-## 💰 Custos
+## 💻 Desenvolvimento Local
 
-### Gratuito:
-- ✅ Hospedagem Vercel
-- ✅ Banco Supabase (até 500MB)
-- ✅ 100GB bandwidth/mês
+```bash
+# 1. Instalar dependências
+npm install
 
-### Pago:
-- 💰 Domínio: ~R$ 40-120/ano
-- 💰 Supabase Pro (se precisar): $25/mês
-- 💰 Vercel Pro (se precisar): $20/mês
+# 2. Configurar variáveis de ambiente
+cp .env.example .env.local
+# Edite .env.local com suas credenciais Supabase
 
-**Começe grátis e faça upgrade só se crescer muito!**
+# 3. Executar servidor de desenvolvimento
+npm run dev
+```
+
+Abra [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🆘 Suporte
+## 📚 Documentação Completa
 
-### Para o Cliente
+Todos os guias estão em [`docs/`](./docs/):
 
-Se tiver dúvidas:
-1. Leia [`GUIA-CLIENTE-HOSPEDAR.md`](./GUIA-CLIENTE-HOSPEDAR.md)
-2. Leia [`INSTRUCOES-EDITOR.md`](./site/INSTRUCOES-EDITOR.md)
-3. Entre em contato com o desenvolvedor
+| Documento | Descrição |
+|-----------|-----------|
+| [**DEPLOY.md**](./docs/DEPLOY.md) | 🚀 Como fazer deploy (GitHub + Vercel) |
+| [**Adsense.md**](./docs/Adsense.md) | 💰 Como ativar Google AdSense |
+| [**INSTRUCOES-EDITOR.md**](./docs/INSTRUCOES-EDITOR.md) | ✏️ Como criar e editar notícias |
+| [**CONFIGURACAO-SUPABASE.md**](./docs/CONFIGURACAO-SUPABASE.md) | 🗄️ Configurar banco de dados |
+| [**CHECKLIST-DEPLOY.md**](./docs/CHECKLIST-DEPLOY.md) | ✅ Checklist antes de entregar |
 
-### Para Desenvolvedores
+---
 
-- **Issues:** Abra uma issue no GitHub
-- **Docs:** Leia os guias técnicos
-- **Contribuições:** Pull requests são bem-vindos!
+## 🎨 Design
+
+### Tema
+- **Cores**: Vermelho/preto (identidade Vasco)
+- **Fontes**:
+  - Heading: Oswald
+  - Body: Lato
+- **Modo**: Claro/Escuro automático
+
+### Responsividade
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+---
+
+## 🔐 Acesso Admin
+
+**URL**: `https://seu-site.vercel.app/admin/login`
+
+**Credenciais**: Configuradas no Supabase → Authentication → Users
+
+---
+
+## 📦 Scripts Disponíveis
+
+```bash
+npm run dev          # Servidor de desenvolvimento
+npm run build        # Build para produção
+npm run start        # Servidor de produção
+npm run lint         # Verificar código
+```
+
+---
+
+## 🐛 Solução de Problemas
+
+### Build falha?
+- Verifique variáveis de ambiente
+- Execute `npm run build` localmente primeiro
+
+### Supabase não conecta?
+- Confira credenciais no `.env.local`
+- Verifique se Supabase está configurado corretamente
+
+### Imagens não aparecem?
+- Verifique políticas no Supabase Storage
+- Bucket `news-images` deve ser público
+
+**Mais soluções**: [`docs/DEPLOY.md`](./docs/DEPLOY.md#solução-de-problemas)
+
+---
+
+## 💡 Próximos Passos
+
+- [ ] Fazer deploy no Vercel
+- [ ] Obter aprovação Google AdSense
+- [ ] Adicionar domínio personalizado
+- [ ] Criar política de privacidade
+- [ ] Adicionar Google Analytics
+
+---
+
+## 📞 Suporte
+
+- **Issues**: Abra uma issue no GitHub
+- **Docs**: Consulte [`docs/`](./docs/)
+- **Next.js**: https://nextjs.org/docs
+- **Supabase**: https://supabase.com/docs
+- **Vercel**: https://vercel.com/docs
 
 ---
 
 ## 📝 Licença
 
-Este projeto foi desenvolvido para o cliente VascoVerso.
+Projeto desenvolvido para uso exclusivo.
 
 ---
 
-## 🙏 Créditos
+**Desenvolvido com ⚫⚪ para o Gigante da Colina**
 
-- **Cliente:** VascoVerso
-- **Desenvolvedor:** [Seu Nome]
-- **Design:** [Designer]
-- **Tecnologias:** Next.js, Supabase, Tiptap
-
----
-
-## 🔴⚪⚫ Vasco da Gama
-
-*Site desenvolvido com paixão pelo Gigante da Colina!*
-
-**Força, Vasco!** ⚽
-
----
-
-## 📧 Contato
-
-- **Email:** contato@vascoverso.com.br
-- **Instagram:** [@vascoverso](https://instagram.com/vascoverso)
-- **Facebook:** [VascoVerso](https://facebook.com/vascoverso)
-- **YouTube:** [VascoVerso](https://youtube.com/vascoverso)
-
----
-
-**Última atualização:** Janeiro 2025
-
+🚀 **Força, Vasco!**
