@@ -1,6 +1,6 @@
 'use client';
 
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
@@ -13,9 +13,6 @@ import {
   Underline as UnderlineIcon,
   List,
   ListOrdered,
-  Heading1,
-  Heading2,
-  Heading3,
   AlignLeft,
   AlignCenter,
   AlignRight,
@@ -32,12 +29,10 @@ interface RichTextEditorProps {
   onImageUpload?: (file: File) => Promise<string>;
 }
 
-const MenuBar = ({ editor, onImageUpload }: { editor: any; onImageUpload?: (file: File) => Promise<string> }) => {
-  if (!editor) {
-    return null;
-  }
-
+const MenuBar = ({ editor, onImageUpload }: { editor: Editor | null; onImageUpload?: (file: File) => Promise<string> }) => {
   const addImage = useCallback(() => {
+    if (!editor) return;
+
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
@@ -61,6 +56,8 @@ const MenuBar = ({ editor, onImageUpload }: { editor: any; onImageUpload?: (file
   }, [editor, onImageUpload]);
 
   const setLink = useCallback(() => {
+    if (!editor) return;
+
     const previousUrl = editor.getAttributes('link').href;
     const url = window.prompt('URL do link:', previousUrl);
 
@@ -75,6 +72,10 @@ const MenuBar = ({ editor, onImageUpload }: { editor: any; onImageUpload?: (file
 
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   }, [editor]);
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <div className="flex flex-wrap gap-1 p-2 border-b border-gray-600 bg-gray-800 rounded-t-lg">

@@ -142,7 +142,7 @@ const DashboardPage = () => {
           <ul className="space-y-3 text-gray-300">
             <li className="flex items-start gap-2">
               <span className="text-primary">•</span>
-              <span>Marque notícias importantes como "destaque" para aparecerem na página inicial</span>
+              <span>Marque notícias importantes como &quot;destaque&quot; para aparecerem na página inicial</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary">•</span>

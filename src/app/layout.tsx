@@ -3,7 +3,7 @@ import { Oswald, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AdSpace from "@/components/AdSpace";
+// import AdSpace from "@/components/AdSpace"; // Comentado até ativação do AdSense
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SearchProvider } from "@/components/SearchProvider";
 

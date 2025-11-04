@@ -97,7 +97,7 @@ const TablePage = () => {
       const positionChanged = originalItem.position !== item.position;
 
       // Preparar os dados para atualização
-      const updates: any = {
+      const updates: Partial<LeagueStanding> = {
         team_name: item.team_name,
         points: item.points,
         played: item.played,

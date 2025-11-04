@@ -120,7 +120,7 @@ const NewsForm = ({ news }: NewsFormProps) => {
           className="w-5 h-5 text-primary bg-gray-700 border-gray-600 rounded focus:ring-primary focus:ring-2"
         />
         <label htmlFor="is_important" className="text-sm font-medium text-gray-200 cursor-pointer">
-          Marcar como notícia de destaque (aparecerá na seção "Destaques" da página inicial)
+          Marcar como notícia de destaque (aparecerá na seção &quot;Destaques&quot; da página inicial)
         </label>
       </div>
 
