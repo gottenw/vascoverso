@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import TiktokIcon from './icons/TiktokIcon';
 import KwaiIcon from './icons/KwaiIcon';
@@ -14,8 +14,8 @@ interface SocialMedia {
   display_order: number;
 }
 
-const getIcon = (platform: string) => {
-  const iconMap: { [key: string]: JSX.Element } = {
+const getIcon = (platform: string): React.ReactElement => {
+  const iconMap: { [key: string]: React.ReactElement } = {
     Youtube: <Youtube />,
     Facebook: <Facebook />,
     Instagram: <Instagram />,
