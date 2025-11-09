@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import withAuth from '@/components/withAuth';
-import { getNews, getFeaturedNews, getSocialMedia, getLeagueStandings } from '@/lib/supabase';
-import { Newspaper, Star, Users, Trophy, TrendingUp } from 'lucide-react';
+import { getNews, getFeaturedNews, getSocialMedia, getLeagueStandings, getActiveSubscribers } from '@/lib/supabase';
+import { Newspaper, Star, Users, Trophy, TrendingUp, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 const DashboardPage = () => {
@@ -12,17 +12,19 @@ const DashboardPage = () => {
     featuredNews: 0,
     socialMediaCount: 0,
     vascoPosition: 0,
+    newsletterSubscribers: 0,
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [news, featured, social, standings] = await Promise.all([
+        const [news, featured, social, standings, subscribers] = await Promise.all([
           getNews(),
           getFeaturedNews(100),
           getSocialMedia(),
           getLeagueStandings(),
+          getActiveSubscribers(),
         ]);
 
         const vascoStanding = standings?.find((s) => s.is_vasco);
@@ -32,6 +34,7 @@ const DashboardPage = () => {
           featuredNews: featured?.length || 0,
           socialMediaCount: social?.length || 0,
           vascoPosition: vascoStanding?.position || 0,
+          newsletterSubscribers: subscribers?.length || 0,
         });
       } catch (error) {
         console.error('Erro ao buscar estatísticas:', error);
@@ -59,6 +62,13 @@ const DashboardPage = () => {
       link: '/admin/news',
     },
     {
+      title: 'Inscritos Newsletter',
+      value: stats.newsletterSubscribers,
+      icon: <Mail size={32} />,
+      color: 'bg-green-600',
+      link: '/admin/newsletter',
+    },
+    {
       title: 'Redes Sociais',
       value: stats.socialMediaCount,
       icon: <Users size={32} />,
@@ -82,13 +92,13 @@ const DashboardPage = () => {
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          {Array.from({ length: 5 }).map((_, index) => (
             <div key={index} className="animate-pulse bg-gray-700 rounded-lg h-40"></div>
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
           {cards.map((card, index) => (
             <Link
               key={index}

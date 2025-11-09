@@ -240,3 +240,66 @@ export const deleteLeagueStanding = async (id: number) => {
   if (error) throw new Error(error.message);
   return data;
 };
+
+// Funções para Newsletter
+
+export const subscribeToNewsletter = async (email: string) => {
+  const { data, error } = await supabase
+    .from('newsletter_subscribers')
+    .insert([{ email }]);
+  if (error) throw new Error(error.message);
+  return data;
+};
+
+export const getNewsletterSubscribers = async () => {
+  const { data, error } = await supabase
+    .from('newsletter_subscribers')
+    .select('*')
+    .order('subscribed_at', { ascending: false });
+  if (error) throw new Error(error.message);
+  return data;
+};
+
+export const getActiveSubscribers = async () => {
+  const { data, error } = await supabase
+    .from('newsletter_subscribers')
+    .select('*')
+    .eq('is_active', true)
+    .order('subscribed_at', { ascending: false });
+  if (error) throw new Error(error.message);
+  return data;
+};
+
+export const unsubscribeFromNewsletter = async (id: string) => {
+  const { data, error } = await supabase
+    .from('newsletter_subscribers')
+    .update({
+      is_active: false,
+      unsubscribed_at: new Date().toISOString()
+    })
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+  return data;
+};
+
+export const deleteNewsletterSubscriber = async (id: string) => {
+  const { data, error } = await supabase
+    .from('newsletter_subscribers')
+    .delete()
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+  return data;
+};
+
+// Funções para Busca de Notícias
+
+export const searchNews = async (query: string) => {
+  const { data, error } = await supabase
+    .from('news')
+    .select('id, title, slug, created_at, image_url')
+    .ilike('title', `%${query}%`)
+    .order('created_at', { ascending: false })
+    .limit(20);
+  if (error) throw new Error(error.message);
+  return data;
+};

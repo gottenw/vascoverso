@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 // import AdSpace from "@/components/AdSpace"; // Comentado até ativação do AdSense
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SearchProvider } from "@/components/SearchProvider";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${oswald.variable} ${lato.variable} font-sans antialiased bg-background text-foreground`}
       >
+        <LoadingScreen />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

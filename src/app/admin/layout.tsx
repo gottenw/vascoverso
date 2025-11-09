@@ -29,6 +29,7 @@ export default function AdminLayout({
         <nav className="mt-8 flex-1">
           <Link href="/admin/dashboard" className="block py-3 px-4 hover:bg-gray-700 transition-colors">Dashboard</Link>
           <Link href="/admin/news" className="block py-3 px-4 hover:bg-gray-700 transition-colors">Notícias</Link>
+          <Link href="/admin/newsletter" className="block py-3 px-4 hover:bg-gray-700 transition-colors">Newsletter</Link>
           <Link href="/admin/table" className="block py-3 px-4 hover:bg-gray-700 transition-colors">Tabela do Campeonato</Link>
           <Link href="/admin/social" className="block py-3 px-4 hover:bg-gray-700 transition-colors">Redes Sociais</Link>
           <Link href="/admin/matches" className="block py-3 px-4 hover:bg-gray-700 transition-colors">Jogos</Link>

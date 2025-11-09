@@ -43,7 +43,7 @@ const ArticleContent = ({ content }: ArticleContentProps) => {
   return (
     <div
       ref={contentRef}
-      className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-a:text-primary"
+      className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-foreground prose-p:mb-6 prose-p:leading-relaxed prose-strong:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-a:text-primary article-content"
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );
