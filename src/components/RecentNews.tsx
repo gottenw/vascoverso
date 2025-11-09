@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { getRecentNews } from '@/lib/supabase';
 import { useSearch } from '@/components/SearchProvider';
+import { Search } from 'lucide-react';
 
 interface RecentNewsItem {
   id: number;
@@ -48,8 +49,9 @@ const RecentNews = () => {
         <h2 className="text-4xl font-extrabold font-heading mb-2 flex items-center gap-3 flex-wrap">
           {searchQuery ? (
             <>
+              <Search className="text-primary" size={36} />
               <span className="text-primary">Resultados</span>
-              <span className="text-gray-800 dark:text-gray-300">para "{searchQuery}"</span>
+              <span className="text-gray-800 dark:text-gray-300">para &ldquo;{searchQuery}&rdquo;</span>
             </>
           ) : (
             <>
@@ -110,7 +112,7 @@ const RecentNews = () => {
           </div>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
             {searchQuery
-              ? `Nenhuma notícia encontrada para "${searchQuery}".`
+              ? <>Nenhuma notícia encontrada para &ldquo;{searchQuery}&rdquo;.</>
               : 'Nenhuma notícia publicada ainda.'}
           </p>
           {searchQuery && (
