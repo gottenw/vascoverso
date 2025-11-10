@@ -14,7 +14,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export const getNews = async () => {
   const { data, error } = await supabase
     .from('news')
-    .select('*')
+    .select('id, title, slug, image_url, created_at, is_important')
     .order('created_at', { ascending: false });
   if (error) throw new Error(error.message);
   return data;
@@ -23,7 +23,7 @@ export const getNews = async () => {
 export const getFeaturedNews = async (limit: number = 2) => {
   const { data, error } = await supabase
     .from('news')
-    .select('*')
+    .select('id, title, slug, image_url, created_at')
     .eq('is_important', true)
     .order('created_at', { ascending: false })
     .limit(limit);

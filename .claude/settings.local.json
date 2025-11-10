@@ -6,7 +6,8 @@
       "Bash(for file in site/*)",
       "Bash(do [ \"$file\" != \"site/.git\" ])",
       "Bash(done)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(convert:*)"
     ],
     "deny": [],
     "ask": []

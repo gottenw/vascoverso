@@ -47,8 +47,10 @@ const NewsCard = ({ title, slug, imageUrl, category, readingTime }: NewsCardProp
             src={imageUrl}
             alt={title}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             style={{ objectFit: 'cover' }}
             className="transition-transform duration-300 group-hover:scale-105"
+            quality={75}
           />
         </div>
         <div className="p-5">

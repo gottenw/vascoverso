@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { Mail, MessageSquare, Megaphone } from 'lucide-react';
 
+// Revalidar a cada 24 horas (página estática)
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Contato | VascoVerso',
   description: 'Entre em contato com o VascoVerso. Envie sugestões, dúvidas ou interesse em publicidade.',

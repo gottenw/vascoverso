@@ -2,10 +2,20 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { createNews, updateNews, uploadImage } from '@/lib/supabase';
-import RichTextEditor from './RichTextEditor';
 import { ImageIcon, X } from 'lucide-react';
 import Image from 'next/image';
+
+// Lazy load do editor rico para economizar bundle size
+const RichTextEditor = dynamic(() => import('./RichTextEditor'), {
+  loading: () => (
+    <div className="w-full h-64 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700">
+      <p className="text-gray-500 dark:text-gray-400">Carregando editor...</p>
+    </div>
+  ),
+  ssr: false,
+});
 
 interface NewsData {
   id?: number;

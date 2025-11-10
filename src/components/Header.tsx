@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Youtube, Facebook, Instagram, AtSign } from 'lucide-react';
+import { Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import TiktokIcon from './icons/TiktokIcon';
 import KwaiIcon from './icons/KwaiIcon';
 import { ThemeToggle } from './ThemeToggle';
@@ -13,7 +13,7 @@ const Header = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <Link href="/" className="flex items-center gap-3 group">
             <Image
-              src="/cruzdemalta.png"
+              src="/cruzdemalta.webp"
               alt="Cruz de Malta do Vasco da Gama"
               width={40}
               height={40}
@@ -39,22 +39,22 @@ const Header = () => {
             </Link>
           </nav>
           <div className="flex items-center space-x-3">
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
+          <a href="https://www.youtube.com/@vascoverso" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
             <Youtube size={24} />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
+          <a href="https://www.facebook.com/vascoversocrvg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
             <Facebook size={24} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
+          <a href="https://www.instagram.com/vascoversocrvg/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
             <Instagram size={24} />
           </a>
-          <a href="https://threads.net" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
-            <AtSign size={24} />
+          <a href="https://x.com/vascoversocrvg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
+            <Twitter size={24} />
           </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
+          <a href="https://www.tiktok.com/@vascoversocrvg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
             <TiktokIcon className="h-6 w-6" />
           </a>
-          <a href="https://kwai.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
+          <a href="https://kwai.com/@vascoverso" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
             <KwaiIcon className="h-6 w-6" />
           </a>
           <ThemeToggle />

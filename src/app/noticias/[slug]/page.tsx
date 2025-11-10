@@ -1,7 +1,23 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getNewsBySlug } from '@/lib/supabase';
+import { getNewsBySlug, getRecentNews } from '@/lib/supabase';
 import ArticleContent from '@/components/ArticleContent';
+
+// Revalidar a cada 1 hora (3600 segundos)
+export const revalidate = 3600;
+
+// Gera páginas estáticas para as notícias mais recentes
+export async function generateStaticParams() {
+  try {
+    const news = await getRecentNews(100);
+    return news.map((item) => ({
+      slug: item.slug,
+    }));
+  } catch (error) {
+    console.error('Erro ao gerar parâmetros estáticos:', error);
+    return [];
+  }
+}
 
 interface NewsItem {
   id: number;
@@ -12,11 +28,13 @@ interface NewsItem {
   created_at: string;
 }
 
-const NewsPage = async ({ params }: { params: { slug: string } }) => {
+const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  // Next.js 15: params é uma Promise
+  const { slug } = await params;
   let news: NewsItem | null = null;
 
   try {
-    news = await getNewsBySlug(params.slug);
+    news = await getNewsBySlug(slug);
   } catch (error) {
     console.error('Erro ao buscar notícia:', error);
     notFound();
@@ -48,8 +66,10 @@ const NewsPage = async ({ params }: { params: { slug: string } }) => {
                 src={news.image_url}
                 alt={news.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 style={{ objectFit: 'cover' }}
                 priority
+                quality={85}
               />
             </div>
           )}

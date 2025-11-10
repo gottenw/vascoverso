@@ -2,6 +2,9 @@ import { Metadata } from 'next';
 import { Target, Users, Heart, Newspaper } from 'lucide-react';
 import Image from 'next/image';
 
+// Revalidar a cada 24 horas (página estática)
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Quem Somos | VascoVerso',
   description: 'Saiba mais sobre a equipe e a missão do VascoVerso.',
@@ -14,7 +17,7 @@ const QuemSomosPage = () => {
         {/* Header */}
         <div className="flex items-center gap-6 mb-6">
           <Image
-            src="/cruzdemalta.png"
+            src="/cruzdemalta.webp"
             alt="Cruz de Malta"
             width={80}
             height={80}

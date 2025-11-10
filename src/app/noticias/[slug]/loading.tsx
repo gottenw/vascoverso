@@ -18,7 +18,7 @@ export default function Loading() {
             {/* Logo */}
             <div className="relative w-full h-full animate-spin-slow">
               <Image
-                src="/cruzdemalta.png"
+                src="/cruzdemalta.webp"
                 alt="Cruz de Malta - Vasco da Gama"
                 width={96}
                 height={96}

@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="flex flex-col justify-center space-y-6">
             <div className="flex items-center gap-4 mb-4">
               <Image
-                src="/cruzdemalta.png"
+                src="/cruzdemalta.webp"
                 alt="Cruz de Malta"
                 width={50}
                 height={50}
