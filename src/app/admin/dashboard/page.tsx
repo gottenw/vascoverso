@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import withAuth from '@/components/withAuth';
-import { getNews, getFeaturedNews, getSocialMedia, getLeagueStandings, getActiveSubscribers } from '@/lib/supabase';
-import { Newspaper, Star, Users, Trophy, TrendingUp, Mail } from 'lucide-react';
+import { getNews, getFeaturedNews, getSocialMedia, getActiveSubscribers } from '@/lib/supabase';
+import { Newspaper, Star, Users, TrendingUp, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 const DashboardPage = () => {
@@ -11,7 +11,6 @@ const DashboardPage = () => {
     totalNews: 0,
     featuredNews: 0,
     socialMediaCount: 0,
-    vascoPosition: 0,
     newsletterSubscribers: 0,
   });
   const [loading, setLoading] = useState(true);
@@ -19,21 +18,17 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [news, featured, social, standings, subscribers] = await Promise.all([
+        const [news, featured, social, subscribers] = await Promise.all([
           getNews(),
           getFeaturedNews(100),
           getSocialMedia(),
-          getLeagueStandings(),
           getActiveSubscribers(),
         ]);
-
-        const vascoStanding = standings?.find((s) => s.is_vasco);
 
         setStats({
           totalNews: news?.length || 0,
           featuredNews: featured?.length || 0,
           socialMediaCount: social?.length || 0,
-          vascoPosition: vascoStanding?.position || 0,
           newsletterSubscribers: subscribers?.length || 0,
         });
       } catch (error) {
@@ -75,13 +70,6 @@ const DashboardPage = () => {
       color: 'bg-purple-600',
       link: '/admin/social',
     },
-    {
-      title: 'Posição do Vasco',
-      value: stats.vascoPosition > 0 ? `${stats.vascoPosition}º` : '-',
-      icon: <Trophy size={32} />,
-      color: 'bg-primary',
-      link: '/admin/table',
-    },
   ];
 
   return (
@@ -92,13 +80,13 @@ const DashboardPage = () => {
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {Array.from({ length: 5 }).map((_, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {Array.from({ length: 4 }).map((_, index) => (
             <div key={index} className="animate-pulse bg-gray-700 rounded-lg h-40"></div>
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {cards.map((card, index) => (
             <Link
               key={index}
@@ -133,10 +121,10 @@ const DashboardPage = () => {
               + Criar Nova Notícia
             </Link>
             <Link
-              href="/admin/table"
+              href="/admin/matches"
               className="block p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-white font-medium"
             >
-              Atualizar Tabela do Campeonato
+              Atualizar Próximos Jogos
             </Link>
             <Link
               href="/admin/social"
@@ -156,7 +144,7 @@ const DashboardPage = () => {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary">•</span>
-              <span>Mantenha a tabela do campeonato sempre atualizada</span>
+              <span>Mantenha os próximos jogos sempre atualizados</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary">•</span>

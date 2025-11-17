@@ -132,110 +132,29 @@ export const updateSocialMedia = async (id: number, updates: { follower_count?: 
   return data;
 };
 
-// Funções para Tabela do Campeonato
+// Funções para Próximos Jogos
 
-export const getLeagueStandings = async () => {
+export const getMatches = async () => {
   const { data, error } = await supabase
-    .from('league_standings')
+    .from('matches')
     .select('*')
-    .order('position', { ascending: true });
+    .order('match_date', { ascending: true });
   if (error) throw new Error(error.message);
   return data;
 };
 
-// Buscar 5 times centrados no Vasco
-export const getLeagueStandingsForDisplay = async () => {
-  // Primeiro, buscar todos os times
-  const { data: allStandings, error } = await supabase
-    .from('league_standings')
-    .select('*')
-    .order('position', { ascending: true });
-
-  if (error) throw new Error(error.message);
-  if (!allStandings || allStandings.length === 0) return [];
-
-  // Encontrar a posição do Vasco
-  const vascoIndex = allStandings.findIndex((team) => team.is_vasco);
-  if (vascoIndex === -1) {
-    // Se não encontrar o Vasco, retorna os 5 primeiros
-    return allStandings.slice(0, 5);
-  }
-
-  const vascoPosition = allStandings[vascoIndex].position;
-  const totalTeams = allStandings.length;
-
-  let startPos: number;
-  let endPos: number;
-
-  // Lógica para centralizar o Vasco
-  if (vascoPosition <= 3) {
-    // Vasco está entre 1º e 3º: mostrar posições 1-5
-    startPos = 1;
-    endPos = 5;
-  } else if (vascoPosition >= totalTeams - 2) {
-    // Vasco está entre as últimas 3 posições: mostrar últimas 5
-    startPos = totalTeams - 4;
-    endPos = totalTeams;
-  } else {
-    // Vasco no meio: mostrar 2 antes e 2 depois
-    startPos = vascoPosition - 2;
-    endPos = vascoPosition + 2;
-  }
-
-  // Filtrar times dentro do intervalo
-  return allStandings.filter(
-    (team) => team.position >= startPos && team.position <= endPos
-  );
-};
-
-export const updateLeagueStanding = async (
+export const updateMatch = async (
   id: number,
   updates: {
-    position?: number;
-    team_name?: string;
-    points?: number;
-    played?: number;
-    wins?: number;
-    draws?: number;
-    losses?: number;
-    goals_for?: number;
-    goals_against?: number;
-    goal_difference?: number;
-    is_vasco?: boolean;
+    match_date?: string;
+    opponent?: string;
+    championship?: string;
+    location?: string;
   }
 ) => {
   const { data, error } = await supabase
-    .from('league_standings')
+    .from('matches')
     .update(updates)
-    .eq('id', id);
-  if (error) throw new Error(error.message);
-  return data;
-};
-
-export const createLeagueStanding = async (standing: {
-  position: number;
-  team_name: string;
-  points: number;
-  played: number;
-  wins?: number;
-  draws?: number;
-  losses?: number;
-  goals_for?: number;
-  goals_against?: number;
-  goal_difference?: number;
-  is_vasco?: boolean;
-}) => {
-  const { data, error } = await supabase
-    .from('league_standings')
-    .insert([standing]);
-  if (error) throw new Error(error.message);
-  return data;
-};
-
-export const deleteLeagueStanding = async (id: number) => {
-  const { data, error } = await supabase
-    .from('league_standings')
-    .delete()
     .eq('id', id);
   if (error) throw new Error(error.message);
   return data;

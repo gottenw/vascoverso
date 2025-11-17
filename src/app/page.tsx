@@ -1,7 +1,6 @@
 import NewsFeed from '@/components/NewsFeed';
 import RecentNews from '@/components/RecentNews';
 import SocialFollowers from '@/components/SocialFollowers';
-import LeagueTable from '@/components/LeagueTable';
 import UpcomingMatches from '@/components/UpcomingMatches';
 
 // Revalidar a cada 5 minutos (300 segundos)
@@ -18,7 +17,6 @@ export default function Home() {
       <div className="space-y-8">
         <NewsFeed />
         <SocialFollowers />
-        <LeagueTable />
         <UpcomingMatches />
       </div>
     </div>

@@ -1,60 +1,143 @@
 'use client';
 
 import withAuth from '@/components/withAuth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getMatches, updateMatch } from '@/lib/supabase';
 
 interface Match {
-  date: string;
+  id: number;
+  match_date: string;
   opponent: string;
   championship: string;
   location: string;
 }
 
-const mockMatches: Match[] = [
-  { date: '20/10', opponent: 'Corinthians', championship: 'Brasileirão', location: 'São Januário' },
-  { date: '27/10', opponent: 'Internacional', championship: 'Brasileirão', location: 'Beira-Rio' },
-  { date: '03/11', opponent: 'Botafogo', championship: 'Brasileirão', location: 'Nilton Santos' },
-];
-
 const MatchesAdminPage = () => {
-  const [matches, setMatches] = useState(mockMatches);
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
-  interface Match {
-    date: string;
-    opponent: string;
-    championship: string;
-    location: string;
-  }
+  useEffect(() => {
+    fetchMatches();
+  }, []);
 
-  const handleInputChange = (index: number, field: keyof Match, value: string) => {
+  const fetchMatches = async () => {
+    try {
+      const data = await getMatches();
+      setMatches(data || []);
+    } catch (error) {
+      console.error('Erro ao buscar jogos:', error);
+      alert('Erro ao carregar os jogos. Verifique o console para mais detalhes.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputChange = (index: number, field: keyof Omit<Match, 'id'>, value: string) => {
     const newMatches = [...matches];
     newMatches[index] = { ...newMatches[index], [field]: value };
     setMatches(newMatches);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would save the matches data
-    console.log(matches);
-    alert('Jogos salvos com sucesso!');
+    setSaving(true);
+
+    try {
+      // Atualizar cada jogo no banco de dados
+      const updatePromises = matches.map((match) =>
+        updateMatch(match.id, {
+          match_date: match.match_date,
+          opponent: match.opponent,
+          championship: match.championship,
+          location: match.location,
+        })
+      );
+
+      await Promise.all(updatePromises);
+      alert('Jogos salvos com sucesso!');
+    } catch (error) {
+      console.error('Erro ao salvar jogos:', error);
+      alert('Erro ao salvar os jogos. Verifique o console para mais detalhes.');
+    } finally {
+      setSaving(false);
+    }
   };
+
+  if (loading) {
+    return (
+      <div>
+        <h1 className="text-3xl font-bold mb-8">Editar Próximos Jogos</h1>
+        <p className="text-gray-600 dark:text-gray-400">Carregando jogos...</p>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8">Editar Próximos Jogos</h1>
-      <form onSubmit={handleSubmit} className="bg-card-background p-4 rounded-lg shadow-md">
-        {matches.map((match, index) => (
-          <div key={index} className="grid grid-cols-4 gap-4 mb-4 border-b border-gray-700 pb-4">
-            <input type="text" value={match.date} onChange={(e) => handleInputChange(index, 'date', e.target.value)} className="p-1 border border-gray-600 bg-background text-foreground rounded" placeholder="Data" />
-            <input type="text" value={match.opponent} onChange={(e) => handleInputChange(index, 'opponent', e.target.value)} className="p-1 border border-gray-600 bg-background text-foreground rounded" placeholder="Adversário" />
-            <input type="text" value={match.championship} onChange={(e) => handleInputChange(index, 'championship', e.target.value)} className="p-1 border border-gray-600 bg-background text-foreground rounded" placeholder="Campeonato" />
-            <input type="text" value={match.location} onChange={(e) => handleInputChange(index, 'location', e.target.value)} className="p-1 border border-gray-600 bg-background text-foreground rounded" placeholder="Local" />
-          </div>
-        ))}
-        <button type="submit" className="mt-4 px-4 py-2 text-white bg-primary rounded-lg hover:bg-red-700 transition-colors">
-          Salvar Jogos
-        </button>
-      </form>
+
+      {matches.length === 0 ? (
+        <div className="bg-card-background p-4 rounded-lg shadow-md">
+          <p className="text-gray-600 dark:text-gray-400">
+            Nenhum jogo cadastrado. Execute o script SQL <code>matches-table.sql</code> no Supabase para criar a tabela e inserir jogos iniciais.
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="bg-card-background p-4 rounded-lg shadow-md">
+          {matches.map((match, index) => (
+            <div key={match.id} className="grid grid-cols-4 gap-4 mb-4 border-b border-gray-700 pb-4 last:border-0">
+              <div>
+                <label className="block text-sm font-medium mb-1 text-gray-600 dark:text-gray-400">Data</label>
+                <input
+                  type="text"
+                  value={match.match_date}
+                  onChange={(e) => handleInputChange(index, 'match_date', e.target.value)}
+                  className="w-full p-2 border border-gray-600 bg-background text-foreground rounded"
+                  placeholder="DD/MM"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-gray-600 dark:text-gray-400">Adversário</label>
+                <input
+                  type="text"
+                  value={match.opponent}
+                  onChange={(e) => handleInputChange(index, 'opponent', e.target.value)}
+                  className="w-full p-2 border border-gray-600 bg-background text-foreground rounded"
+                  placeholder="Nome do time"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-gray-600 dark:text-gray-400">Campeonato</label>
+                <input
+                  type="text"
+                  value={match.championship}
+                  onChange={(e) => handleInputChange(index, 'championship', e.target.value)}
+                  className="w-full p-2 border border-gray-600 bg-background text-foreground rounded"
+                  placeholder="Ex: Brasileirão"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-gray-600 dark:text-gray-400">Local</label>
+                <input
+                  type="text"
+                  value={match.location}
+                  onChange={(e) => handleInputChange(index, 'location', e.target.value)}
+                  className="w-full p-2 border border-gray-600 bg-background text-foreground rounded"
+                  placeholder="Ex: São Januário"
+                />
+              </div>
+            </div>
+          ))}
+          <button
+            type="submit"
+            disabled={saving}
+            className="mt-4 px-6 py-2 text-white bg-primary rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {saving ? 'Salvando...' : 'Salvar Jogos'}
+          </button>
+        </form>
+      )}
     </div>
   );
 };
