@@ -45,7 +45,7 @@ const Footer = () => {
                 <div className="p-2 bg-gray-800 rounded-lg group-hover:bg-primary/20 transition-colors">
                   <MailIcon size={20} className="text-primary" />
                 </div>
-                <span>contato@vascoverso.com</span>
+                <span>vascoversocrvg@gmail.com</span>
               </div>
             </div>
           </div>

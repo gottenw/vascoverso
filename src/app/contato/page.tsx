@@ -36,10 +36,10 @@ const ContatoPage = () => {
               Dúvidas, sugestões ou feedbacks sobre o portal.
             </p>
             <a
-              href="mailto:contato@vascoverso.com"
+              href="mailto:vascoversocrvg@gmail.com"
               className="text-primary hover:underline font-medium"
             >
-              contato@vascoverso.com
+              vascoversocrvg@gmail.com
             </a>
           </div>
 
