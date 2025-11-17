@@ -55,7 +55,15 @@ const MatchesAdminPage = () => {
       );
 
       await Promise.all(updatePromises);
-      alert('Jogos salvos com sucesso!');
+
+      // Revalidar a página inicial para atualizar imediatamente
+      try {
+        await fetch('/api/revalidate', { method: 'POST' });
+      } catch (revalidateError) {
+        console.warn('Não foi possível revalidar o cache, mas os dados foram salvos:', revalidateError);
+      }
+
+      alert('Jogos salvos com sucesso! O site será atualizado em instantes.');
     } catch (error) {
       console.error('Erro ao salvar jogos:', error);
       alert('Erro ao salvar os jogos. Verifique o console para mais detalhes.');
