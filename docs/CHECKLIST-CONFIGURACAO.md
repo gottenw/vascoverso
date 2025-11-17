@@ -240,6 +240,6 @@ Se ainda houver problemas após seguir este checklist:
 
 ---
 
-**Checklist criado para VascoVerso** 🔴⚪⚫
+**Checklist criado para Vascoverso** 🔴⚪⚫
 
 *Última atualização: 2025*

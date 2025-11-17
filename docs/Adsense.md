@@ -1,4 +1,4 @@
-# Guia Completo: Google AdSense no VascoVerso
+# Guia Completo: Google AdSense no Vascoverso
 
 Este guia explica **passo a passo** como configurar o Google AdSense no seu site. Siga com calma!
 
@@ -14,7 +14,7 @@ O **Google AdSense** é um programa que permite exibir anúncios no seu site e g
 
 ---
 
-## 🎯 Situação Atual do VascoVerso
+## 🎯 Situação Atual do Vascoverso
 
 ### ✅ O que JÁ ESTÁ PRONTO:
 - **Estrutura completa de AdSense preparada** (código já escrito!)
@@ -99,7 +99,7 @@ Depois da aprovação, você tem 2 opções:
 
 ---
 
-## 📍 Onde os anúncios vão aparecer no VascoVerso
+## 📍 Onde os anúncios vão aparecer no Vascoverso
 
 ### 1. **Cantos do Site (4 posições fixas)**
 - Canto superior esquerdo

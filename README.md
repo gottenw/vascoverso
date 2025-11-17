@@ -1,4 +1,4 @@
-# 🏴 VascoVerso
+# 🏴 Vascoverso
 
 Site de notícias do Vasco da Gama com sistema de gerenciamento completo.
 
@@ -101,7 +101,7 @@ vascoverso/
    ```bash
    git init
    git add .
-   git commit -m "Primeiro commit: VascoVerso"
+   git commit -m "Primeiro commit: Vascoverso"
    git remote add origin https://github.com/SEU-USERNAME/vascoverso.git
    git push -u origin main
    ```

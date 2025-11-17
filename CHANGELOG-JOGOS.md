@@ -4,7 +4,7 @@ Data: $(date +%Y-%m-%d)
 
 ## Resumo das Alterações
 
-Este documento resume todas as alterações feitas no projeto VascoVerso para:
+Este documento resume todas as alterações feitas no projeto Vascoverso para:
 1. **Remover** completamente a funcionalidade de tabela do campeonato brasileiro
 2. **Corrigir** a seção de "Próximos Jogos" para salvar no banco de dados
 

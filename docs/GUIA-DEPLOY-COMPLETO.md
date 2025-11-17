@@ -1,4 +1,4 @@
-# 🚀 Guia Completo de Deploy - VascoVerso
+# 🚀 Guia Completo de Deploy - Vascoverso
 
 ## 📋 O que você precisa enviar para o cliente
 
@@ -156,7 +156,7 @@ zip -r vascoverso-site.zip site/ \
 cd site
 git init
 git add .
-git commit -m "Initial commit - VascoVerso site"
+git commit -m "Initial commit - Vascoverso site"
 
 # Criar repositório no GitHub e depois:
 git remote add origin https://github.com/usuario/vascoverso.git
@@ -240,7 +240,7 @@ Envie o arquivo `GUIA-CLIENTE-HOSPEDAR.md` (próximo) para ele seguir.
 ```
 Olá [Nome do Cliente],
 
-Segue o site VascoVerso completo e pronto para publicação! 🎉
+Segue o site Vascoverso completo e pronto para publicação! 🎉
 
 📦 Arquivos enviados:
 - Código do site (ZIP/link do GitHub)

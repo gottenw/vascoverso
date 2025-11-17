@@ -30,7 +30,7 @@ FOR EACH ROW
 EXECUTE FUNCTION update_newsletter_updated_at();
 
 -- Comentários para documentação
-COMMENT ON TABLE newsletter_subscribers IS 'Tabela para armazenar emails de assinantes da newsletter do VascoVerso';
+COMMENT ON TABLE newsletter_subscribers IS 'Tabela para armazenar emails de assinantes da newsletter do Vascoverso';
 COMMENT ON COLUMN newsletter_subscribers.email IS 'Email do assinante (único)';
 COMMENT ON COLUMN newsletter_subscribers.is_active IS 'Indica se o assinante está ativo ou cancelou a inscrição';
 COMMENT ON COLUMN newsletter_subscribers.subscribed_at IS 'Data e hora da inscrição';

@@ -1,4 +1,4 @@
-# ✅ Checklist de Deploy - VascoVerso
+# ✅ Checklist de Deploy - Vascoverso
 
 ## 🎯 Use este checklist antes de entregar o site ao cliente
 
@@ -433,7 +433,7 @@ Antes de enviar, prepare um email com:
 
 Se chegou até aqui e tudo está ✅, você está pronto!
 
-**O site VascoVerso está completo e profissional!** 🔴⚪⚫
+**O site Vascoverso está completo e profissional!** 🔴⚪⚫
 
 Boa entrega e sucesso! 🚀
 

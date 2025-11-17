@@ -1,4 +1,4 @@
-# Upgrade do Painel Administrativo - VascoVerso
+# Upgrade do Painel Administrativo - Vascoverso
 
 ## Novas Funcionalidades Implementadas
 

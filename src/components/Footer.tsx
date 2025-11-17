@@ -55,7 +55,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-center md:text-left">
-              &copy; {new Date().getFullYear()} <span className="text-primary font-semibold">VascoVerso</span>. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} <span className="text-primary font-semibold">Vascoverso</span>. Todos os direitos reservados.
             </p>
             <p className="text-gray-400 flex items-center gap-2">
               Feito com <Heart size={16} className="text-primary fill-primary animate-pulse" /> para a Nação Vascaína

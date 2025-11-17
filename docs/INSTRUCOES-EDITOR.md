@@ -1,4 +1,4 @@
-# 📝 Guia do Editor de Notícias - VascoVerso
+# 📝 Guia do Editor de Notícias - Vascoverso
 
 ## 🎯 Visão Geral
 

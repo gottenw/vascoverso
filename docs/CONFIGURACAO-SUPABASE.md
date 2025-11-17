@@ -157,4 +157,4 @@ O novo editor é:
 
 ---
 
-**Desenvolvido para VascoVerso** 🔴⚪⚫
+**Desenvolvido para Vascoverso** 🔴⚪⚫

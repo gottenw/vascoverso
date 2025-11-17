@@ -1,4 +1,4 @@
-# 🔧 Comandos Úteis - VascoVerso
+# 🔧 Comandos Úteis - Vascoverso
 
 ## 📦 Preparação para Entrega
 
@@ -86,7 +86,7 @@ git init
 git add .
 
 # Primeiro commit
-git commit -m "Initial commit - VascoVerso site"
+git commit -m "Initial commit - Vascoverso site"
 ```
 
 ### Conectar ao GitHub

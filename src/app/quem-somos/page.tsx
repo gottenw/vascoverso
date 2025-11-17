@@ -6,8 +6,8 @@ import Image from 'next/image';
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: 'Quem Somos | VascoVerso',
-  description: 'Saiba mais sobre a equipe e a missão do VascoVerso.',
+  title: 'Quem Somos | Vascoverso',
+  description: 'Saiba mais sobre a equipe e a missão do Vascoverso.',
 };
 
 const QuemSomosPage = () => {
@@ -33,7 +33,7 @@ const QuemSomosPage = () => {
         </div>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-          Bem-vindo ao <span className="text-primary font-semibold">VascoVerso</span>, sua fonte número um de notícias e análises sobre o
+          Bem-vindo ao <span className="text-primary font-semibold">Vascoverso</span>, sua fonte número um de notícias e análises sobre o
           <span className="text-primary font-semibold"> Club de Regatas Vasco da Gama</span>. Somos uma equipe de torcedores apaixonados
           e jornalistas dedicados a trazer as informações mais precisas e atualizadas sobre o
           <span className="text-primary font-semibold"> Gigante da Colina</span>.
@@ -65,7 +65,7 @@ const QuemSomosPage = () => {
             </div>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Somos formados por jornalistas, analistas, editores e, acima de tudo, vascaínos. Cada membro contribui
-              com paixão e conhecimento para garantir que o VascoVerso seja sua casa quando o assunto é Vasco da Gama.
+              com paixão e conhecimento para garantir que o Vascoverso seja sua casa quando o assunto é Vasco da Gama.
             </p>
           </div>
         </div>

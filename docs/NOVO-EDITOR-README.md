@@ -1,4 +1,4 @@
-# 🎉 Novo Editor de Notícias - VascoVerso
+# 🎉 Novo Editor de Notícias - Vascoverso
 
 ## 🚀 O que mudou?
 
@@ -219,4 +219,4 @@ Perfeito para seu cliente criar notícias sem precisar de conhecimento técnico!
 
 ---
 
-**Desenvolvido com ❤️ para VascoVerso** 🔴⚪⚫
+**Desenvolvido com ❤️ para Vascoverso** 🔴⚪⚫

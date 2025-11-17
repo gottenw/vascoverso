@@ -5,8 +5,8 @@ import { Mail, MessageSquare, Megaphone } from 'lucide-react';
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: 'Contato | VascoVerso',
-  description: 'Entre em contato com o VascoVerso. Envie sugestões, dúvidas ou interesse em publicidade.',
+  title: 'Contato | Vascoverso',
+  description: 'Entre em contato com o Vascoverso. Envie sugestões, dúvidas ou interesse em publicidade.',
 };
 
 const ContatoPage = () => {
@@ -19,7 +19,7 @@ const ContatoPage = () => {
         <div className="h-1 w-24 bg-gradient-to-r from-primary to-transparent rounded-full mb-8"></div>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-          Entre em contato com a equipe do <span className="text-primary font-semibold">VascoVerso</span>.
+          Entre em contato com a equipe do <span className="text-primary font-semibold">Vascoverso</span>.
           Estamos prontos para ouvir suas sugestões, responder suas dúvidas ou discutir oportunidades de parceria.
         </p>
 
@@ -55,10 +55,10 @@ const ContatoPage = () => {
               Envie sugestões de notícias e informações sobre o Vasco.
             </p>
             <a
-              href="mailto:redacao@vascoverso.com"
+              href="mailto:vascoversocrvg@gmail.com"
               className="text-primary hover:underline font-medium"
             >
-              redacao@vascoverso.com
+              vascoversocrvg@gmail.com
             </a>
           </div>
 
@@ -71,20 +71,20 @@ const ContatoPage = () => {
               <h3 className="font-heading text-xl font-bold text-gray-900 dark:text-foreground">Publicidade</h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-3">
-              Interessado em anunciar no VascoVerso? Fale conosco!
+              Interessado em anunciar no Vascoverso? Fale conosco!
             </p>
             <a
-              href="mailto:comercial@vascoverso.com"
+              href="mailto:vascoversocrvg@gmail.com"
               className="text-primary hover:underline font-medium"
             >
-              comercial@vascoverso.com
+              vascoversocrvg@gmail.com
             </a>
           </div>
         </div>
 
         {/* Informações Adicionais */}
         <div className="bg-gray-100 dark:bg-gray-900/50 p-6 rounded-xl border-2 border-gray-300 dark:border-gray-700">
-          <h2 className="font-heading text-2xl font-bold mb-4 text-gray-900 dark:text-foreground">Por que anunciar no VascoVerso?</h2>
+          <h2 className="font-heading text-2xl font-bold mb-4 text-gray-900 dark:text-foreground">Por que anunciar no Vascoverso?</h2>
           <ul className="space-y-3 text-gray-700 dark:text-gray-300">
             <li className="flex items-start gap-3">
               <span className="text-primary text-2xl">•</span>

@@ -20,7 +20,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "VascoVerso - Notícias do Gigante da Colina",
+  title: "Vascoverso - Notícias do Gigante da Colina",
   description: "Fique por dentro de tudo sobre o Vasco da Gama.",
 };
 

@@ -76,7 +76,7 @@ const DashboardPage = () => {
     <div>
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-foreground mb-2">Dashboard</h1>
-        <p className="text-gray-400">Bem-vindo ao painel de administração do VascoVerso</p>
+        <p className="text-gray-400">Bem-vindo ao painel de administração do Vascoverso</p>
       </div>
 
       {loading ? (

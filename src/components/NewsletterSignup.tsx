@@ -64,7 +64,7 @@ export default function NewsletterSignup() {
             <Mail className="text-primary" size={28} />
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-white font-heading">Newsletter VascoVerso</h3>
+            <h3 className="text-2xl font-bold text-white font-heading">Newsletter Vascoverso</h3>
             <p className="text-gray-400 text-sm">Fique por dentro de tudo!</p>
           </div>
         </div>

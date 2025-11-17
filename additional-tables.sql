@@ -1,4 +1,4 @@
--- Tabelas adicionais para o VascoVerso
+-- Tabelas adicionais para o Vascoverso
 -- Execute este SQL no Supabase SQL Editor
 
 -- Tabela para gerenciar redes sociais

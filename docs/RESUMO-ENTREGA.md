@@ -1,4 +1,4 @@
-# 📦 RESUMO EXECUTIVO - Entrega VascoVerso
+# 📦 RESUMO EXECUTIVO - Entrega Vascoverso
 
 ## ✅ O QUE ENVIAR PARA O CLIENTE
 
@@ -83,11 +83,11 @@ Senha Admin: `[a senha que você criou]`
 ## 📧 MODELO DE EMAIL
 
 ```
-Assunto: Site VascoVerso - Pronto para Deploy! 🎉
+Assunto: Site Vascoverso - Pronto para Deploy! 🎉
 
 Olá [Nome do Cliente],
 
-O site VascoVerso está PRONTO e testado! 🚀
+O site Vascoverso está PRONTO e testado! 🚀
 
 🎁 O que você está recebendo:
 ✅ Site completo e funcional
@@ -122,7 +122,7 @@ Leia a documentação ou me chame!
 WhatsApp: (XX) XXXXX-XXXX
 Email: seu@email.com
 
-Sucesso com o VascoVerso! 🔴⚪⚫
+Sucesso com o Vascoverso! 🔴⚪⚫
 
 Atenciosamente,
 [Seu Nome]
@@ -209,7 +209,7 @@ Atenciosamente,
 ```
 Olá [Nome],
 
-Como está indo com o VascoVerso?
+Como está indo com o Vascoverso?
 
 Conseguiu fazer o deploy?
 Alguma dúvida sobre o editor?

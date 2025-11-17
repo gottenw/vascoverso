@@ -1,6 +1,6 @@
 # 🚀 Guia Completo: Deploy no GitHub + Vercel
 
-Este guia ensina **TUDO** que você precisa fazer para colocar o VascoVerso online. Siga passo a passo!
+Este guia ensina **TUDO** que você precisa fazer para colocar o Vascoverso online. Siga passo a passo!
 
 ---
 
@@ -72,7 +72,7 @@ git init
 git add .
 
 # Fazer o primeiro commit
-git commit -m "Primeiro commit: VascoVerso pronto para deploy"
+git commit -m "Primeiro commit: Vascoverso pronto para deploy"
 ```
 
 ### **Passo 1.4: Conectar ao GitHub e enviar código**
@@ -176,7 +176,7 @@ https://vascoverso-xxxxx.vercel.app
 Copie o link e envie. Exemplo de mensagem:
 
 ```
-Olá! O site VascoVerso está no ar em versão beta:
+Olá! O site Vascoverso está no ar em versão beta:
 🔗 https://vascoverso.vercel.app
 
 Funcionalidades disponíveis:

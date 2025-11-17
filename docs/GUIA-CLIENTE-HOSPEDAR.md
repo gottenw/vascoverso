@@ -1,8 +1,8 @@
-# 🌐 Guia para Hospedar seu Site VascoVerso
+# 🌐 Guia para Hospedar seu Site Vascoverso
 
 ## 👋 Bem-vindo!
 
-Este guia vai te ajudar a colocar seu site **VascoVerso** no ar, mesmo sem conhecimento técnico!
+Este guia vai te ajudar a colocar seu site **Vascoverso** no ar, mesmo sem conhecimento técnico!
 
 **Tempo estimado:** 30-45 minutos
 **Custo:** Gratuito (exceto domínio ~R$ 40/ano)
@@ -58,7 +58,7 @@ O GitHub guarda o código do seu site.
    - No GitHub Desktop, verá todos os arquivos listados
 
 5. **Faça o commit:**
-   - Embaixo, escreva: "Site VascoVerso inicial"
+   - Embaixo, escreva: "Site Vascoverso inicial"
    - Clique em **"Commit to main"**
 
 6. **Publique:**
@@ -74,7 +74,7 @@ O GitHub guarda o código do seu site.
 4. Clique em **"Create repository"**
 5. Clique em **"uploading an existing file"**
 6. Arraste TODOS os arquivos do site
-7. Escreva: "Site VascoVerso"
+7. Escreva: "Site Vascoverso"
 8. Clique em **"Commit changes"**
 
 **✅ Código no GitHub!**
@@ -96,7 +96,7 @@ O Supabase armazena as notícias e imagens.
 
 1. Clique em **"New Project"**
 2. Preencha:
-   - **Name:** VascoVerso
+   - **Name:** Vascoverso
    - **Database Password:** Crie uma senha forte (anote!)
    - **Region:** South America (São Paulo)
 3. Clique em **"Create new project"**
@@ -369,7 +369,7 @@ Agora você pode:
 - ✅ Gerenciar o conteúdo
 - ✅ Compartilhar com o mundo!
 
-**Boa sorte com o VascoVerso!** 🔴⚪⚫
+**Boa sorte com o Vascoverso!** 🔴⚪⚫
 
 ---
 
@@ -381,4 +381,4 @@ Agora você pode:
 
 ---
 
-**Desenvolvido com ❤️ para o VascoVerso**
+**Desenvolvido com ❤️ para o Vascoverso**
