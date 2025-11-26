@@ -49,12 +49,9 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     <div className="max-w-4xl mx-auto">
       <article className="bg-card-background p-8 rounded-lg shadow-md">
         <header className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-4xl font-bold text-foreground flex-1">{news.title}</h1>
-            <WhatsAppShareButton title={news.title} slug={slug} />
-          </div>
+          <h1 className="text-4xl font-bold mb-4 text-foreground">{news.title}</h1>
 
-          <div className="flex items-center text-sm text-gray-500 mb-6">
+          <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
             <span>
               {new Date(news.created_at).toLocaleDateString('pt-BR', {
                 day: '2-digit',
@@ -62,6 +59,7 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
                 year: 'numeric',
               })}
             </span>
+            <WhatsAppShareButton title={news.title} slug={slug} />
           </div>
 
           {news.image_url && (
