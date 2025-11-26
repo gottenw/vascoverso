@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getNewsBySlug, getRecentNews } from '@/lib/supabase';
 import ArticleContent from '@/components/ArticleContent';
+import WhatsAppShareButton from '@/components/WhatsAppShareButton';
 
 // Revalidar a cada 1 hora (3600 segundos)
 export const revalidate = 3600;
@@ -76,6 +77,15 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         </header>
 
         <ArticleContent content={news.content} />
+
+        <div className="mt-8 pt-6 border-t border-gray-300 dark:border-gray-700">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              Gostou da notícia? Compartilhe com seus amigos!
+            </p>
+            <WhatsAppShareButton title={news.title} slug={slug} />
+          </div>
+        </div>
       </article>
     </div>
   );
