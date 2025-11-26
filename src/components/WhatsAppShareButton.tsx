@@ -19,11 +19,11 @@ const WhatsAppShareButton = ({ title, slug }: WhatsAppShareButtonProps) => {
   return (
     <button
       onClick={handleShare}
-      className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform"
+      className="p-2 rounded-full bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 transition-all duration-200 hover:scale-110"
       aria-label="Compartilhar no WhatsApp"
+      title="Compartilhar no WhatsApp"
     >
       <MessageCircle size={20} />
-      <span>Compartilhar no WhatsApp</span>
     </button>
   );
 };

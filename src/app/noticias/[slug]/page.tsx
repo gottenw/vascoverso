@@ -49,7 +49,10 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     <div className="max-w-4xl mx-auto">
       <article className="bg-card-background p-8 rounded-lg shadow-md">
         <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-4 text-foreground">{news.title}</h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-4xl font-bold text-foreground flex-1">{news.title}</h1>
+            <WhatsAppShareButton title={news.title} slug={slug} />
+          </div>
 
           <div className="flex items-center text-sm text-gray-500 mb-6">
             <span>
@@ -77,15 +80,6 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         </header>
 
         <ArticleContent content={news.content} />
-
-        <div className="mt-8 pt-6 border-t border-gray-300 dark:border-gray-700">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Gostou da notícia? Compartilhe com seus amigos!
-            </p>
-            <WhatsAppShareButton title={news.title} slug={slug} />
-          </div>
-        </div>
       </article>
     </div>
   );

@@ -42,13 +42,13 @@ const NewsCard = ({ title, slug, imageUrl, category, readingTime }: NewsCardProp
   return (
     <div className="group bg-card-background rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 border border-gray-200 dark:border-gray-800">
       <Link href={`/noticias/${slug}`} className="relative block">
-        <div className="relative overflow-hidden bg-gray-100 dark:bg-gray-800" style={{ aspectRatio: '16/9' }}>
+        <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
           <Image
             src={imageUrl}
             alt={title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: 'cover' }}
             className="transition-transform duration-300 group-hover:scale-105"
             quality={75}
           />
