@@ -24,7 +24,7 @@ export default function NewsletterSignup() {
     try {
       await subscribeToNewsletter(email);
       setStatus('success');
-      setMessage('Inscrição realizada com sucesso! Obrigado por se juntar a nós.');
+      setMessage('Email cadastrado com sucesso! Agora você receberá nossas notícias em primeira mão.');
       setEmail('');
 
       // Reset status after 5 seconds
@@ -53,10 +53,12 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 rounded-2xl border-2 border-primary/30 shadow-xl overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+    <div className="relative bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900 p-8 rounded-2xl border-2 border-gray-600/50 shadow-xl overflow-hidden">
+      {/* Metallic shine effects */}
+      <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/10 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
+      <div className="absolute top-1/4 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl"></div>
 
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-4">
@@ -64,13 +66,14 @@ export default function NewsletterSignup() {
             <Mail className="text-primary" size={28} />
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-white font-heading">Newsletter Vascoverso</h3>
-            <p className="text-gray-400 text-sm">Fique por dentro de tudo!</p>
+            <h3 className="text-2xl font-bold text-white font-heading">Receba as notícias em primeira mão</h3>
+            <p className="text-gray-400 text-sm">Seja o primeiro a saber!</p>
           </div>
         </div>
 
         <p className="text-gray-300 mb-6 leading-relaxed">
-          Receba as últimas notícias do <span className="text-primary font-semibold">Gigante da Colina</span> diretamente no seu email!
+          Cadastre seu email e receba <span className="text-primary font-semibold">antecipadamente</span> as últimas notícias do{' '}
+          <span className="text-primary font-semibold">Gigante da Colina</span>. Fique à frente com informações exclusivas diretamente na sua caixa de entrada!
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -99,7 +102,7 @@ export default function NewsletterSignup() {
             ) : (
               <>
                 <Send size={20} />
-                Inscrever-se Agora
+                Cadastrar Agora
               </>
             )}
           </button>

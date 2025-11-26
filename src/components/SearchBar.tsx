@@ -21,7 +21,7 @@ export function SearchBar() {
         placeholder="Buscar notícias do Vasco..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full pl-12 pr-12 py-3 rounded-xl bg-gray-800/90 text-white placeholder-gray-400 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 backdrop-blur-sm shadow-lg hover:shadow-primary/20"
+        className="w-full pl-12 pr-12 py-3 rounded-xl bg-black/90 text-white placeholder-gray-400 border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 backdrop-blur-sm shadow-lg hover:shadow-black/50"
       />
 
       {searchQuery && (
@@ -35,7 +35,7 @@ export function SearchBar() {
       )}
 
       {searchQuery && (
-        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+        <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-black to-transparent opacity-50"></div>
       )}
     </div>
   );

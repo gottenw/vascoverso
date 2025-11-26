@@ -87,9 +87,9 @@ const NewsletterPage = () => {
         <div>
           <h1 className="text-4xl font-bold text-foreground mb-2 flex items-center gap-3">
             <Mail className="text-primary" />
-            Newsletter
+            Emails Cadastrados
           </h1>
-          <p className="text-gray-400">Gerencie os inscritos da newsletter do Vascoverso</p>
+          <p className="text-gray-400">Gerencie os emails cadastrados para receber notícias antecipadamente</p>
         </div>
         <button
           onClick={exportToCSV}

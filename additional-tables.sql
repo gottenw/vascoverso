@@ -17,7 +17,7 @@ INSERT INTO social_media (platform, follower_count, url, display_order, is_activ
   ('Youtube', '1.5M', 'https://youtube.com/@vascodagama', 1, true),
   ('Facebook', '2.3M', 'https://facebook.com/vascodagama', 2, true),
   ('Instagram', '3.1M', 'https://instagram.com/vascodagama', 3, true),
-  ('Twitter', '1.8M', 'https://twitter.com/vascodagama', 4, true),
+  ('X', '1.8M', 'https://twitter.com/vascodagama', 4, true),
   ('TikTok', '2.5M', 'https://tiktok.com/@vascodagama', 5, true),
   ('Kwai', '800K', 'https://kwai.com/@vascodagama', 6, true)
 ON CONFLICT (platform) DO NOTHING;

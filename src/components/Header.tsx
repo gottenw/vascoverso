@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Youtube, Facebook, Instagram } from 'lucide-react';
 import TiktokIcon from './icons/TiktokIcon';
 import KwaiIcon from './icons/KwaiIcon';
+import XIcon from './icons/XIcon';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchBar } from './SearchBar';
 
@@ -49,7 +50,7 @@ const Header = () => {
             <Instagram size={24} />
           </a>
           <a href="https://x.com/vascoversocrvg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
-            <Twitter size={24} />
+            <XIcon size={24} />
           </a>
           <a href="https://www.tiktok.com/@vascoversocrvg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors duration-300 p-1 rounded-full hover:bg-gray-800">
             <TiktokIcon className="h-6 w-6" />

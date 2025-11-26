@@ -138,7 +138,7 @@ export const getMatches = async () => {
   const { data, error } = await supabase
     .from('matches')
     .select('*')
-    .order('match_date', { ascending: true });
+    .order('match_date_full', { ascending: true });
   if (error) throw new Error(error.message);
   return data;
 };
@@ -212,13 +212,60 @@ export const deleteNewsletterSubscriber = async (id: string) => {
 
 // Funções para Busca de Notícias
 
+// Função auxiliar para remover acentos e normalizar texto
+const removeAccents = (str: string): string => {
+  // Primeiro, normaliza usando NFD para separar caracteres base de diacríticos
+  let normalized = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  // Mapeamento adicional para caracteres específicos do português que podem não ser capturados
+  const accentMap: { [key: string]: string } = {
+    'á': 'a', 'à': 'a', 'ã': 'a', 'â': 'a', 'ä': 'a',
+    'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
+    'í': 'i', 'ì': 'i', 'î': 'i', 'ï': 'i',
+    'ó': 'o', 'ò': 'o', 'õ': 'o', 'ô': 'o', 'ö': 'o',
+    'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
+    'ç': 'c',
+    'ñ': 'n',
+    'Á': 'A', 'À': 'A', 'Ã': 'A', 'Â': 'A', 'Ä': 'A',
+    'É': 'E', 'È': 'E', 'Ê': 'E', 'Ë': 'E',
+    'Í': 'I', 'Ì': 'I', 'Î': 'I', 'Ï': 'I',
+    'Ó': 'O', 'Ò': 'O', 'Õ': 'O', 'Ô': 'O', 'Ö': 'O',
+    'Ú': 'U', 'Ù': 'U', 'Û': 'U', 'Ü': 'U',
+    'Ç': 'C',
+    'Ñ': 'N'
+  };
+
+  // Aplica o mapeamento para garantir que todos os caracteres sejam normalizados
+  normalized = normalized.split('').map(char => accentMap[char] || char).join('');
+
+  return normalized;
+};
+
 export const searchNews = async (query: string) => {
+  // Se query está vazia, retorna vazio
+  if (!query || query.trim().length === 0) {
+    return [];
+  }
+
+  // Normaliza a query removendo acentos
+  const normalizedQuery = removeAccents(query.toLowerCase().trim());
+
+  // Busca TODAS as notícias recentes (últimas 100) para filtrar client-side
   const { data, error } = await supabase
     .from('news')
-    .select('id, title, slug, created_at, image_url')
-    .ilike('title', `%${query}%`)
+    .select('id, title, slug, created_at, image_url, content')
     .order('created_at', { ascending: false })
-    .limit(20);
+    .limit(100);
+
   if (error) throw new Error(error.message);
-  return data;
+
+  // Filtra client-side para busca sem acentos no título E no conteúdo
+  const filtered = data?.filter(news => {
+    const normalizedTitle = removeAccents(news.title.toLowerCase());
+    const normalizedContent = removeAccents(news.content?.toLowerCase() || '');
+    return normalizedTitle.includes(normalizedQuery) || normalizedContent.includes(normalizedQuery);
+  }) || [];
+
+  // Retorna no máximo 20 resultados
+  return filtered.slice(0, 20);
 };

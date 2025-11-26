@@ -61,7 +61,7 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           </div>
 
           {news.image_url && (
-            <div className="relative w-full h-96 rounded-lg overflow-hidden">
+            <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
               <Image
                 src={news.image_url}
                 alt={news.title}

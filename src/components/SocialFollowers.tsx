@@ -1,7 +1,8 @@
 import React from 'react';
-import { Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Youtube, Facebook, Instagram } from 'lucide-react';
 import TiktokIcon from './icons/TiktokIcon';
 import KwaiIcon from './icons/KwaiIcon';
+import XIcon from './icons/XIcon';
 import { getSocialMedia } from '@/lib/supabase';
 
 interface SocialMedia {
@@ -17,7 +18,8 @@ const getIcon = (platform: string): React.ReactElement => {
     Youtube: <Youtube />,
     Facebook: <Facebook />,
     Instagram: <Instagram />,
-    Twitter: <Twitter />,
+    X: <XIcon className="h-6 w-6" />,
+    Twitter: <XIcon className="h-6 w-6" />,
     TikTok: <TiktokIcon className="h-6 w-6" />,
     Kwai: <KwaiIcon className="h-6 w-6" />,
   };
