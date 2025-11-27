@@ -3,7 +3,7 @@ import { Oswald, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-// import AdSpace from "@/components/AdSpace"; // Comentado até ativação do AdSense
+import AdSpace from "@/components/AdSpace";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SearchProvider } from "@/components/SearchProvider";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -31,6 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7612725155199707"
+          crossOrigin="anonymous"></script>
+      </head>
       <body
         className={`${oswald.variable} ${lato.variable} font-sans antialiased bg-background text-foreground`}
       >
@@ -42,11 +46,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SearchProvider>
-            {/* Espaços para AdSense nos cantos - OCULTOS até ativação do AdSense */}
-            {/* <AdSpace position="top-left" />
+            {/* Espaços para AdSense nos cantos */}
+            <AdSpace position="top-left" />
             <AdSpace position="top-right" />
             <AdSpace position="bottom-left" />
-            <AdSpace position="bottom-right" /> */}
+            <AdSpace position="bottom-right" />
 
             <Header />
             <main className="container mx-auto p-4 min-h-screen">{children}</main>

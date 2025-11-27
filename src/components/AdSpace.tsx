@@ -1,7 +1,15 @@
 'use client';
 
+import { useEffect } from 'react';
+
 interface AdSpaceProps {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+}
+
+declare global {
+  interface Window {
+    adsbygoogle: unknown[];
+  }
 }
 
 const AdSpace = ({ position }: AdSpaceProps) => {
@@ -12,19 +20,29 @@ const AdSpace = ({ position }: AdSpaceProps) => {
     'bottom-right': 'bottom-4 right-4',
   };
 
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    } catch (err) {
+      console.error('AdSense error:', err);
+    }
+  }, []);
+
   return (
     <div
       className={`fixed ${positionClasses[position]} z-10 hidden xl:block`}
       style={{ width: '160px', height: '600px' }}
     >
-      {/* Espaço reservado para AdSense */}
-      <div
-        className="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-400 dark:text-gray-500 text-xs text-center p-2"
-      >
-        AdSense
-        <br />
-        Auto Ads
-      </div>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-7612725155199707"
+        data-ad-slot="auto"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
     </div>
   );
 };

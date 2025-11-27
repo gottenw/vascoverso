@@ -6,24 +6,31 @@ interface ArticleContentProps {
   content: string;
 }
 
+declare global {
+  interface Window {
+    adsbygoogle: unknown[];
+  }
+}
+
 const ArticleContent = ({ content }: ArticleContentProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!contentRef.current) return;
 
-    // ADSENSE OCULTO - Descomente quando ativar o AdSense
-    /*
     // Criar o elemento de AdSense
-    const adElement = document.createElement('div');
-    adElement.className = 'my-8 py-6 px-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 text-sm';
-    adElement.style.minHeight = '250px';
-    adElement.innerHTML = `
-      <div class="text-center">
-        <p class="font-semibold mb-2">AdSense</p>
-        <p class="text-xs">Display Ad (Responsivo)</p>
-      </div>
-    `;
+    const adContainer = document.createElement('div');
+    adContainer.className = 'my-8';
+
+    const adElement = document.createElement('ins');
+    adElement.className = 'adsbygoogle';
+    adElement.style.display = 'block';
+    adElement.setAttribute('data-ad-client', 'ca-pub-7612725155199707');
+    adElement.setAttribute('data-ad-slot', 'auto');
+    adElement.setAttribute('data-ad-format', 'auto');
+    adElement.setAttribute('data-full-width-responsive', 'true');
+
+    adContainer.appendChild(adElement);
 
     // Encontrar todos os parágrafos
     const paragraphs = contentRef.current.querySelectorAll('p');
@@ -34,10 +41,18 @@ const ArticleContent = ({ content }: ArticleContentProps) => {
       const insertAfter = paragraphs[middleIndex];
 
       if (insertAfter && insertAfter.parentNode) {
-        insertAfter.parentNode.insertBefore(adElement, insertAfter.nextSibling);
+        insertAfter.parentNode.insertBefore(adContainer, insertAfter.nextSibling);
+
+        // Inicializar o AdSense
+        try {
+          if (typeof window !== 'undefined') {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          }
+        } catch (err) {
+          console.error('AdSense error:', err);
+        }
       }
     }
-    */
   }, [content]);
 
   return (
