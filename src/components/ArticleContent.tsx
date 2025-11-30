@@ -16,43 +16,52 @@ const ArticleContent = ({ content }: ArticleContentProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!contentRef.current) return;
+    // Aguardar um pequeno delay para garantir que o DOM está pronto
+    const timer = setTimeout(() => {
+      if (!contentRef.current) return;
 
-    // Criar o elemento de AdSense
-    const adContainer = document.createElement('div');
-    adContainer.className = 'my-8';
+      // Verificar se já existe um anúncio para evitar duplicação
+      const existingAd = contentRef.current.querySelector('.adsbygoogle');
+      if (existingAd) return;
 
-    const adElement = document.createElement('ins');
-    adElement.className = 'adsbygoogle';
-    adElement.style.display = 'block';
-    adElement.setAttribute('data-ad-client', 'ca-pub-7612725155199707');
-    adElement.setAttribute('data-ad-slot', 'auto');
-    adElement.setAttribute('data-ad-format', 'auto');
-    adElement.setAttribute('data-full-width-responsive', 'true');
+      // Criar o elemento de AdSense
+      const adContainer = document.createElement('div');
+      adContainer.className = 'my-8';
 
-    adContainer.appendChild(adElement);
+      const adElement = document.createElement('ins');
+      adElement.className = 'adsbygoogle';
+      adElement.style.display = 'block';
+      adElement.setAttribute('data-ad-client', 'ca-pub-7612725155199707');
+      adElement.setAttribute('data-ad-slot', 'auto');
+      adElement.setAttribute('data-ad-format', 'auto');
+      adElement.setAttribute('data-full-width-responsive', 'true');
 
-    // Encontrar todos os parágrafos
-    const paragraphs = contentRef.current.querySelectorAll('p');
+      adContainer.appendChild(adElement);
 
-    if (paragraphs.length >= 3) {
-      // Inserir o AdSense após o terceiro parágrafo (ou no meio)
-      const middleIndex = Math.floor(paragraphs.length / 2);
-      const insertAfter = paragraphs[middleIndex];
+      // Encontrar todos os parágrafos
+      const paragraphs = contentRef.current?.querySelectorAll('p');
 
-      if (insertAfter && insertAfter.parentNode) {
-        insertAfter.parentNode.insertBefore(adContainer, insertAfter.nextSibling);
+      if (paragraphs && paragraphs.length >= 3) {
+        // Inserir o AdSense após o terceiro parágrafo (ou no meio)
+        const middleIndex = Math.floor(paragraphs.length / 2);
+        const insertAfter = paragraphs[middleIndex];
 
-        // Inicializar o AdSense
-        try {
-          if (typeof window !== 'undefined') {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        if (insertAfter?.parentNode) {
+          insertAfter.parentNode.insertBefore(adContainer, insertAfter.nextSibling);
+
+          // Inicializar o AdSense
+          try {
+            if (typeof window !== 'undefined' && window.adsbygoogle) {
+              (window.adsbygoogle = window.adsbygoogle || []).push({});
+            }
+          } catch (err) {
+            console.error('AdSense error:', err);
           }
-        } catch (err) {
-          console.error('AdSense error:', err);
         }
       }
-    }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [content]);
 
   return (

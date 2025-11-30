@@ -21,7 +21,7 @@ const RecentNews = () => {
   useEffect(() => {
     const fetchRecentNews = async () => {
       try {
-        const data = await getRecentNews(20);
+        const data = await getRecentNews(30);
         setNews(data || []);
       } catch (error) {
         console.error('Erro ao buscar últimas notícias:', error);
@@ -44,12 +44,12 @@ const RecentNews = () => {
   }, [news, searchQuery]);
 
   return (
-    <div className="bg-gradient-to-br from-card-background via-card-background to-card-background p-8 rounded-2xl shadow-2xl border-2 border-gray-300 dark:border-gray-700/50">
-      <div className="mb-8">
-        <h2 className="text-4xl font-extrabold font-heading mb-2 flex items-center gap-3 flex-wrap">
+    <div className="bg-gradient-to-br from-card-background via-card-background to-card-background p-4 rounded-2xl shadow-2xl border-2 border-gray-300 dark:border-gray-700/50">
+      <div className="mb-4">
+        <h2 className="text-2xl font-extrabold font-heading mb-2 flex items-center gap-2 flex-wrap">
           {searchQuery ? (
             <>
-              <Search className="text-primary" size={36} />
+              <Search className="text-primary" size={24} />
               <span className="text-primary">Resultados</span>
               <span className="text-gray-800 dark:text-gray-300">para &ldquo;{searchQuery}&rdquo;</span>
             </>
@@ -75,24 +75,24 @@ const RecentNews = () => {
           ))}
         </div>
       ) : filteredNews.length > 0 ? (
-        <ul className="space-y-3">
+        <ul className="space-y-0.5">
           {filteredNews.map((item) => (
             <li key={item.slug} className="group">
               <Link
                 href={`/noticias/${item.slug}`}
-                className="flex items-start gap-4 p-5 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800/60 transition-all duration-300 border-l-4 border-transparent hover:border-primary hover:shadow-lg hover:shadow-primary/10"
+                className="flex items-start gap-2 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800/60 transition-all duration-300 border-l-4 border-transparent hover:border-primary hover:shadow-lg hover:shadow-primary/10"
               >
-                <div className="flex items-center justify-center mt-1">
-                  <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-150 group-hover:shadow-lg group-hover:shadow-primary/50 transition-all duration-300"></div>
+                <div className="flex items-center justify-center mt-0.5">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 group-hover:shadow-lg group-hover:shadow-primary/50 transition-all duration-300"></div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-foreground group-hover:text-primary transition-colors leading-relaxed">
+                  <h3 className="text-[15px] font-semibold text-gray-900 dark:text-foreground group-hover:text-primary transition-colors leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-500 mt-1">
+                  <p className="text-xs text-gray-600 dark:text-gray-500 mt-0">
                     {new Date(item.created_at).toLocaleDateString('pt-BR', {
                       day: '2-digit',
-                      month: 'long',
+                      month: 'short',
                       year: 'numeric'
                     })}
                   </p>

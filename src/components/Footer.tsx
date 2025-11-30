@@ -25,7 +25,7 @@ const Footer = () => {
                   <span className="text-primary">vasco</span>
                   <span className="text-white">verso</span>
                 </h3>
-                <p className="text-gray-400 text-sm">Portal de Notícias Oficial</p>
+                <p className="text-gray-400 text-sm">Portal de Notícias</p>
               </div>
             </div>
 
