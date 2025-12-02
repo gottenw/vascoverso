@@ -77,12 +77,22 @@ const NewsForm = ({ news }: NewsFormProps) => {
     try {
       if (news?.id) {
         // Atualizar notícia existente
-        await updateNews(news.id, {
+        const result = await updateNews(news.id, {
           title,
           content,
           image_url: mainImage || undefined,
           is_important: isImportant
         });
+        console.log('Resultado da atualização:', result);
+
+        // Revalidar cache das páginas
+        try {
+          await fetch('/api/revalidate', { method: 'POST' });
+          console.log('Cache revalidado com sucesso');
+        } catch (revalidateError) {
+          console.warn('Erro ao revalidar cache:', revalidateError);
+        }
+
         alert('Notícia atualizada com sucesso!');
       } else {
         // Criar nova notícia
@@ -94,13 +104,21 @@ const NewsForm = ({ news }: NewsFormProps) => {
           image_url: mainImage || undefined,
           is_important: isImportant
         });
+
+        // Revalidar cache das páginas
+        try {
+          await fetch('/api/revalidate', { method: 'POST' });
+        } catch (revalidateError) {
+          console.warn('Erro ao revalidar cache:', revalidateError);
+        }
+
         alert('Notícia criada com sucesso!');
       }
       router.push('/admin/news');
       router.refresh(); // Força a atualização dos dados na página de listagem
     } catch (error) {
       console.error("Erro ao salvar notícia:", error);
-      alert("Ocorreu um erro ao salvar a notícia.");
+      alert(`Ocorreu um erro ao salvar a notícia: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
     }
     setIsSubmitting(false);
   };

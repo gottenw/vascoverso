@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Footer = () => {
   return (
     <footer className="bg-black text-white mt-16 border-t-4 border-primary">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 2xl:px-56 xl:px-48 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-10">
           {/* Newsletter Section */}
           <NewsletterSignup />

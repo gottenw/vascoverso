@@ -15,16 +15,16 @@ const QuemSomosPage = () => {
     <div className="max-w-4xl mx-auto py-8">
       <div className="bg-card-background p-8 rounded-2xl shadow-2xl border-2 border-gray-300 dark:border-gray-700/50">
         {/* Header */}
-        <div className="flex items-center gap-6 mb-6">
+        <div className="flex items-center gap-4 sm:gap-6 mb-6">
           <Image
             src="/cruzdemalta.webp"
             alt="Cruz de Malta"
             width={80}
             height={80}
-            className="opacity-90"
+            className="opacity-90 flex-shrink-0"
           />
-          <div>
-            <h1 className="font-heading text-5xl font-bold mb-2 flex items-center gap-4">
+          <div className="flex-1 min-w-0">
+            <h1 className="font-heading text-3xl sm:text-5xl font-bold mb-2 flex items-center gap-2 sm:gap-4 flex-wrap">
               <span className="text-primary">Quem</span>
               <span className="text-gray-900 dark:text-white">Somos</span>
             </h1>

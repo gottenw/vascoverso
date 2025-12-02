@@ -60,8 +60,18 @@ export const createNews = async (newsData: { title: string; content: string; slu
 };
 
 export const updateNews = async (id: number, newsData: { title: string; content: string; image_url?: string; is_important?: boolean; }) => {
-  const { data, error } = await supabase.from('news').update(newsData).eq('id', id);
-  if (error) throw new Error(error.message);
+  const { data, error } = await supabase
+    .from('news')
+    .update(newsData)
+    .eq('id', id)
+    .select();
+
+  if (error) {
+    console.error('Erro ao atualizar notícia:', error);
+    throw new Error(error.message);
+  }
+
+  console.log('Notícia atualizada com sucesso:', data);
   return data;
 };
 
@@ -214,10 +224,9 @@ export const deleteNewsletterSubscriber = async (id: string) => {
 
 // Função auxiliar para remover acentos e normalizar texto
 const removeAccents = (str: string): string => {
-  // Primeiro, normaliza usando NFD para separar caracteres base de diacríticos
-  let normalized = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (!str) return '';
 
-  // Mapeamento adicional para caracteres específicos do português que podem não ser capturados
+  // Mapeamento completo de caracteres acentuados (aplicado ANTES do NFD)
   const accentMap: { [key: string]: string } = {
     'á': 'a', 'à': 'a', 'ã': 'a', 'â': 'a', 'ä': 'a',
     'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
@@ -226,19 +235,22 @@ const removeAccents = (str: string): string => {
     'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
     'ç': 'c',
     'ñ': 'n',
-    'Á': 'A', 'À': 'A', 'Ã': 'A', 'Â': 'A', 'Ä': 'A',
-    'É': 'E', 'È': 'E', 'Ê': 'E', 'Ë': 'E',
-    'Í': 'I', 'Ì': 'I', 'Î': 'I', 'Ï': 'I',
-    'Ó': 'O', 'Ò': 'O', 'Õ': 'O', 'Ô': 'O', 'Ö': 'O',
-    'Ú': 'U', 'Ù': 'U', 'Û': 'U', 'Ü': 'U',
-    'Ç': 'C',
-    'Ñ': 'N'
+    'Á': 'a', 'À': 'a', 'Ã': 'a', 'Â': 'a', 'Ä': 'a',
+    'É': 'e', 'È': 'e', 'Ê': 'e', 'Ë': 'e',
+    'Í': 'i', 'Ì': 'i', 'Î': 'i', 'Ï': 'i',
+    'Ó': 'o', 'Ò': 'o', 'Õ': 'o', 'Ô': 'o', 'Ö': 'o',
+    'Ú': 'u', 'Ù': 'u', 'Û': 'u', 'Ü': 'u',
+    'Ç': 'c',
+    'Ñ': 'n'
   };
 
-  // Aplica o mapeamento para garantir que todos os caracteres sejam normalizados
-  normalized = normalized.split('').map(char => accentMap[char] || char).join('');
+  // Primeiro aplica o mapeamento direto
+  let result = str.split('').map(char => accentMap[char] || char).join('');
 
-  return normalized;
+  // Depois normaliza usando NFD para pegar qualquer acento remanescente
+  result = result.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  return result;
 };
 
 export const searchNews = async (query: string) => {
