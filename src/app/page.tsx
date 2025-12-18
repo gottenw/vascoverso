@@ -3,8 +3,8 @@ import RecentNews from '@/components/RecentNews';
 import SocialFollowers from '@/components/SocialFollowers';
 import UpcomingMatches from '@/components/UpcomingMatches';
 
-// Revalidar a cada 5 minutos (300 segundos)
-export const revalidate = 300;
+// Revalidar a cada 15 minutos (900 segundos)
+export const revalidate = 900;
 
 export default function Home() {
   return (

@@ -4,8 +4,8 @@ import { getNewsBySlug, getRecentNews } from '@/lib/supabase';
 import ArticleContent from '@/components/ArticleContent';
 import WhatsAppShareButton from '@/components/WhatsAppShareButton';
 
-// Revalidar a cada 1 hora (3600 segundos)
-export const revalidate = 3600;
+// Revalidar a cada 2 horas (7200 segundos)
+export const revalidate = 7200;
 
 // Gera páginas estáticas para as notícias mais recentes
 export async function generateStaticParams() {
@@ -25,6 +25,7 @@ interface NewsItem {
   title: string;
   slug: string;
   image_url: string | null;
+  image_credit: string | null;
   content: string;
   created_at: string;
 }
@@ -63,16 +64,23 @@ const NewsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           </div>
 
           {news.image_url && (
-            <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
-              <Image
-                src={news.image_url}
-                alt={news.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                style={{ objectFit: 'cover' }}
-                priority
-                quality={85}
-              />
+            <div className="mb-6">
+              <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                <Image
+                  src={news.image_url}
+                  alt={news.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  style={{ objectFit: 'cover' }}
+                  priority
+                  quality={85}
+                />
+              </div>
+              {news.image_credit && (
+                <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-2 text-right">
+                  {news.image_credit}
+                </p>
+              )}
             </div>
           )}
         </header>

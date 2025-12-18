@@ -22,6 +22,7 @@ interface NewsData {
   title: string;
   content: string;
   image_url?: string;
+  image_credit?: string;
   is_important?: boolean;
 }
 
@@ -45,6 +46,7 @@ const NewsForm = ({ news }: NewsFormProps) => {
   const [title, setTitle] = useState(news?.title || '');
   const [content, setContent] = useState(news?.content || '');
   const [mainImage, setMainImage] = useState<string | null>(news?.image_url || null);
+  const [imageCredit, setImageCredit] = useState(news?.image_credit || '');
   const [isImportant, setIsImportant] = useState(news?.is_important || false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploadingMainImage, setIsUploadingMainImage] = useState(false);
@@ -81,6 +83,7 @@ const NewsForm = ({ news }: NewsFormProps) => {
           title,
           content,
           image_url: mainImage || undefined,
+          image_credit: imageCredit || undefined,
           is_important: isImportant
         });
         console.log('Resultado da atualização:', result);
@@ -102,6 +105,7 @@ const NewsForm = ({ news }: NewsFormProps) => {
           content,
           slug,
           image_url: mainImage || undefined,
+          image_credit: imageCredit || undefined,
           is_important: isImportant
         });
 
@@ -198,6 +202,25 @@ const NewsForm = ({ news }: NewsFormProps) => {
             <p className="text-sm text-gray-400">Fazendo upload da imagem...</p>
           )}
         </div>
+
+        {/* Campo de Crédito da Imagem */}
+        {mainImage && (
+          <div className="mt-3">
+            <label className="block mb-2 text-sm font-medium text-gray-200">
+              Crédito da Imagem (opcional)
+            </label>
+            <input
+              type="text"
+              value={imageCredit}
+              onChange={(e) => setImageCredit(e.target.value)}
+              className="w-full max-w-md px-4 py-2 border rounded-lg bg-gray-800 text-white border-gray-600 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none text-sm"
+              placeholder="Ex: Foto: Nome do Fotógrafo, Reprodução: Instagram"
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              Este texto aparecerá abaixo da imagem principal da notícia
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Editor de Conteúdo Rico */}

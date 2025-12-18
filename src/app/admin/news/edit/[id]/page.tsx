@@ -10,6 +10,9 @@ interface NewsData {
   id: number;
   title: string;
   content: string;
+  image_url?: string;
+  image_credit?: string;
+  is_important?: boolean;
 }
 
 const EditNewsPage = () => {

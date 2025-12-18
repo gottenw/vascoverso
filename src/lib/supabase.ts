@@ -53,13 +53,13 @@ export const getNewsBySlug = async (slug: string) => {
   return data;
 };
 
-export const createNews = async (newsData: { title: string; content: string; slug: string; image_url?: string; is_important?: boolean; }) => {
+export const createNews = async (newsData: { title: string; content: string; slug: string; image_url?: string; image_credit?: string; is_important?: boolean; }) => {
   const { data, error } = await supabase.from('news').insert([newsData]);
   if (error) throw new Error(error.message);
   return data;
 };
 
-export const updateNews = async (id: number, newsData: { title: string; content: string; image_url?: string; is_important?: boolean; }) => {
+export const updateNews = async (id: number, newsData: { title: string; content: string; image_url?: string; image_credit?: string; is_important?: boolean; }) => {
   const { data, error } = await supabase
     .from('news')
     .update(newsData)
@@ -262,22 +262,21 @@ export const searchNews = async (query: string) => {
   // Normaliza a query removendo acentos
   const normalizedQuery = removeAccents(query.toLowerCase().trim());
 
-  // Busca TODAS as notícias recentes (últimas 100) para filtrar client-side
+  // Busca apenas títulos das últimas 50 notícias (SEM content) para reduzir dados
   const { data, error } = await supabase
     .from('news')
-    .select('id, title, slug, created_at, image_url, content')
+    .select('id, title, slug, created_at, image_url')
     .order('created_at', { ascending: false })
-    .limit(100);
+    .limit(50);
 
   if (error) throw new Error(error.message);
 
-  // Filtra client-side para busca sem acentos no título E no conteúdo
+  // Filtra client-side para busca sem acentos APENAS no título
   const filtered = data?.filter(news => {
     const normalizedTitle = removeAccents(news.title.toLowerCase());
-    const normalizedContent = removeAccents(news.content?.toLowerCase() || '');
-    return normalizedTitle.includes(normalizedQuery) || normalizedContent.includes(normalizedQuery);
+    return normalizedTitle.includes(normalizedQuery);
   }) || [];
 
-  // Retorna no máximo 20 resultados
-  return filtered.slice(0, 20);
+  // Retorna no máximo 15 resultados
+  return filtered.slice(0, 15);
 };
