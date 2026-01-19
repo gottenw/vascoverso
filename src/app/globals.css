@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card-background: 0 0% 96%;
+    --header-background: 0 0% 0%;
+    --primary: 4 79% 48%;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 96%;
+    --card-background: 0 0% 20%;
+    --header-background: 0 0% 0%;
+    --primary: 4 79% 48%;
+  }
+}
+
+@layer base {
+  html {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Espaçamento adequado para parágrafos no conteúdo das notícias */
+@layer components {
+  .article-content p {
+    margin-bottom: 1.5rem !important;
+    line-height: 1.8 !important;
+  }
+
+  .article-content p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-bottom: 1.5rem !important;
+    padding-left: 2rem !important;
+  }
+
+  .article-content li {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .article-content img {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    border-radius: 0.5rem !important;
+  }
+
+  .article-content blockquote {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding-left: 1.5rem !important;
+    border-left: 4px solid hsl(var(--primary)) !important;
+    font-style: italic !important;
+  }
+}
+
+/* Loading animations */
+@layer utilities {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes progress {
+    0% {
+      width: 0%;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+
+  .animate-progress {
+    animation: progress 1.5s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-700 {
+    animation-delay: 0.7s;
+  }
+}

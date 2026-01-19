@@ -1,0 +1,32 @@
+# Robots.txt para Vascoverso
+# Permite que todos os bots acessem o site
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vascoverso.com.br/sitemap.xml
+
+# Páginas específicas
+Allow: /noticias/
+Allow: /quem-somos
+Allow: /contato
+Allow: /politica-de-privacidade
+Allow: /termos-de-uso
+Allow: /politica-de-cookies
+
+# Bloquear áreas administrativas
+Disallow: /admin/
+Disallow: /api/
+
+# Configurações para bots específicos
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
